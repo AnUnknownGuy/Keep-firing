@@ -27,10 +27,11 @@ func _ready():
 	if $Sprite != null:
 		nb_state = $Sprite.vframes * $Sprite.hframes
 
-func grid_pos():
-	var y = position.y / (12 * pixel_scale)
-	var x = (position.x + y * 18) / (16 * pixel_scale)
-	return Vector2(x, y).floor()
+
+func grid_pos(pos: Vector2 = position):
+	var y = pos.y / (12 * pixel_scale)
+	var x = (pos.x + pos.y / 2) / (16 * pixel_scale)
+	return Vector2(x, y)
 
 func set_z():
 	var pos = grid_pos()
@@ -49,20 +50,22 @@ func set_new_heat():
 			time_remaining = time_alive_on_fire
 			inc_state()
 			
-	elif not on_fire && can_be_on_fire:
+			if time_remaining < 0:
+				time_remaining = time_alive_on_fire
+				inc_state()
+				
+		else:
+			if (can_be_on_fire && added_heat != 0):
+				current_heat += added_heat
+				var c = current_heat / max_heat_resist
+				modulate = Color(1, 1 - 0.6 * c, 1 - 0.6 * c, 1)
+			
+			if (current_heat > max_heat_resist):
+				if (not on_fire):
+					set_on_fire()
+				current_heat = max_heat_resist
 		
-		if (can_be_on_fire && added_heat != 0):
-			current_heat += added_heat
-			var c = current_heat / max_heat_resist
-			modulate = Color(1, 1 - 0.6 * c, 1 - 0.6 * c, 1)
-		
-		if (current_heat > max_heat_resist):
-			if (not on_fire):
-				set_on_fire()
-			current_heat = max_heat_resist
-		
-		
-	added_heat = 0
+		added_heat = 0
 
 func set_on_fire():
 	if can_be_on_fire:
@@ -70,8 +73,6 @@ func set_on_fire():
 		inc_state()
 
 func inc_state():
-	print(state)
-	print(nb_state)
 	state += 1
 	if (state < nb_state):
 		$Sprite.frame = state
