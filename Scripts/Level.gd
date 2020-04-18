@@ -2,7 +2,7 @@ extends Node2D
 
 onready var buildings = $Buildings.get_children()
 
-export var burn_timer_max = 500
+export var burn_timer_max = 0.5
 var burn_timer = burn_timer_max
 
 func _process(delta):

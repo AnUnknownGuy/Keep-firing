@@ -5,6 +5,8 @@
 
 [node name="Building1" type="Node2D"]
 script = ExtResource( 1 )
+max_heat_transmitted = 7
+time_alive_on_fire = 25
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )

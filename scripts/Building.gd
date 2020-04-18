@@ -11,10 +11,6 @@ func grid_pos():
 		grid_pos_buffer = .grid_pos()
 	return grid_pos_buffer
 
-func set_on_fire():
-	if (can_be_on_fire):
-		self.on_fire = true
-		#THINGS
 
 func _to_string():
 	return "Building(" + str(people_inside) + "/" + str(max_people_inside) + ")"
