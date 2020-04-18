@@ -27,9 +27,9 @@ func _ready():
 	#if $Sprite != null:
 		#nb_state = $Sprite.vframes * $Sprite.hframes
 
-func grid_pos():
-	var y = position.y / (12 * pixel_scale)
-	var x = (position.x + y * 18) / (16 * pixel_scale)
+func grid_pos(pos: Vector2 = position):
+	var y = pos.y / (12 * pixel_scale)
+	var x = (pos.x + pos.y / 2) / (16 * pixel_scale)
 	return Vector2(x, y)
 
 func set_z():
@@ -42,29 +42,26 @@ func add_heat(heat: float):
 	added_heat += heat
 
 func set_new_heat():
-	
-	if on_fire && can_be_on_fire:
-		time_remaining -= added_heat
-		print(time_remaining)
-		print(added_heat)
-		if time_remaining < 0:
-			time_remaining = time_alive_on_fire
-			inc_state()
+	if can_be_on_fire:
+		if on_fire:
+			time_remaining -= added_heat
 			
-	elif not on_fire && can_be_on_fire:
+			if time_remaining < 0:
+				time_remaining = time_alive_on_fire
+				inc_state()
+				
+		else:
+			if (can_be_on_fire && added_heat != 0):
+				current_heat += added_heat
+				var c = current_heat / max_heat_resist
+				modulate = Color(1, 1 - 0.6 * c, 1 - 0.6 * c, 1)
+			
+			if (current_heat > max_heat_resist):
+				if (not on_fire):
+					set_on_fire()
+				current_heat = max_heat_resist
 		
-		if (can_be_on_fire && added_heat != 0):
-			current_heat += added_heat
-			var c = current_heat / max_heat_resist
-			modulate = Color(1, 1 - 0.6 * c, 1 - 0.6 * c, 1)
-		
-		if (current_heat > max_heat_resist):
-			if (not on_fire):
-				set_on_fire()
-			current_heat = max_heat_resist
-		
-		
-	added_heat = 0
+		added_heat = 0
 
 func set_on_fire():
 	if can_be_on_fire:
@@ -72,8 +69,6 @@ func set_on_fire():
 		inc_state()
 
 func inc_state():
-	print(state)
-	print(nb_state)
 	state += 1
 	if (state < nb_state):
 		#$Sprite.frame = state
@@ -101,7 +96,6 @@ func transfer_heat():
 			var building_next_to = buildings.get_building_at(grid_pos() + Vector2(x,y))
 			if building_next_to != null:
 				building_next_to.add_heat(heat_to_transfer)
-				print(Vector2(x,y))
 					
 			var entities_next_to = entities.get_entities_at(grid_pos() + Vector2(x,y))
 			if entities_next_to != null:
