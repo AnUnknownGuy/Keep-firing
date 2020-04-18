@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "Entity",
 "language": "GDScript",
 "path": "res://Scripts/Entity.gd"
+}, {
+"base": "Entity",
+"class": "Human",
+"language": "GDScript",
+"path": "res://Scripts/Human.gd"
 } ]
 _global_script_class_icons={
 "Building": "",
 "Burnable": "",
-"Entity": ""
+"Entity": "",
+"Human": ""
 }
 
 [application]

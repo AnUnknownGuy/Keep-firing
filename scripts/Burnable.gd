@@ -33,7 +33,10 @@ func grid_pos():
 	return Vector2(x, y)
 
 func set_z():
-	z_index = position.y
+	var pos = grid_pos()
+	var fx = floor(pos.x)
+	var fy = floor(pos.y)
+	z_index = fx + 0.8 * fy + 0.2 * (pos.y)
 
 func add_heat(heat: float):
 	added_heat += heat
