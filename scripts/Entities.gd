@@ -2,6 +2,8 @@ extends Node2D
 
 var entities_dictionnary = {}
 
+#var human_scene = preload("res://Scenes/Human.tscn")
+
 func declare_at_pos(entity: Entity, pos: Vector2):
 	if entities_dictionnary[pos] == null:
 		entities_dictionnary[pos] = [entity]
@@ -20,3 +22,10 @@ func add_heat_at(pos: Vector2, heat: int):
 	if (entities != null):
 		for entity in entities:
 			entity.heat_up(heat)
+
+#func _ready():
+#	for i in range(50):
+#		for j in range(50):
+#			var human = human_scene.instance()
+#			human.position = Vector2(i, j) * 10
+#			add_child(human)
