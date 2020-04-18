@@ -277,4 +277,7 @@ type = 1
 script = ExtResource( 2 )
 
 [node name="Human4" parent="Entities" instance=ExtResource( 8 )]
-position = Vector2( 188.833, 7.68056 )
+position = Vector2( 179.059, 10.1241 )
+
+[node name="Human5" parent="Entities" instance=ExtResource( 8 )]
+position = Vector2( 202.68, 163.251 )

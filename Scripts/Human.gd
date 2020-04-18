@@ -20,7 +20,6 @@ func find_valid_location():
 	rand_location()
 	while collision():
 		rand_location()
-	#print(grid_pos(position + Vector2(sin(angle), cos(angle)) * walk_time * speed))
 
 const STEPS = 5
 
@@ -38,10 +37,6 @@ func _ready():
 	speed = rand_range(10, 20)
 	find_valid_location()
 	wait_time = 0
-	
-	path = $"../../Navigation2D".get_actual_path(position, Vector2(50, 100))
-	$"../../Line2D".points = path
-	print(path)
 
 func _process(delta):
 	if wait_time > 0:
@@ -56,5 +51,9 @@ func _process(delta):
 		
 		if walk_time < 0:
 			wait_time = randf() * 2.5 + 0.5
+	
+	if name == "Human4":
+		path = $"../../Navigation2D".get_actual_path(position, $"../Human5".position)
+		$"../../Line2D".points = path
 	
 	set_z()
