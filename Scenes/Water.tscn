@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Resources/Images/TileMaps/tm_water.png" type="Texture" id=1]
-[ext_resource path="res://scripts/Water.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Water.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Images/TileMaps/tm_water.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "water"
@@ -20,13 +20,18 @@ tracks/0/keys = {
 }
 
 [node name="Water" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource( 1 )
+max_heat_transmitted = 0
+max_heat_resist = 0
+can_be_on_fire = false
+can_be_on_fire = false
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 offset = Vector2( 5.5, 6 )
 hframes = 4
+frame = 1
 region_rect = Rect2( 55.7057, 24.529, 19.3372, 19.3372 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

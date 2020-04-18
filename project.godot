@@ -12,17 +12,17 @@ _global_script_classes=[ {
 "base": "Burnable",
 "class": "Building",
 "language": "GDScript",
-"path": "res://scripts/Building.gd"
+"path": "res://Scripts/Building.gd"
 }, {
 "base": "Node2D",
 "class": "Burnable",
 "language": "GDScript",
-"path": "res://scripts/Burnable.gd"
+"path": "res://Scripts/Burnable.gd"
 }, {
 "base": "Burnable",
 "class": "Entity",
 "language": "GDScript",
-"path": "res://scripts/Entity.gd"
+"path": "res://Scripts/Entity.gd"
 } ]
 _global_script_class_icons={
 "Building": "",
@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="LD_FIRE"
-run/main_scene="res://scene/Level.tscn"
+run/main_scene="res://Scenes/Level.tscn"
 config/icon="res://icon.png"
 
 [rendering]

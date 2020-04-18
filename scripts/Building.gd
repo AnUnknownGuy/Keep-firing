@@ -2,12 +2,19 @@ extends Burnable
 class_name Building
 
 export var max_people_inside = 0
-var actual_people_inside = max_people_inside
+var people_inside = max_people_inside
 
+var grid_pos_buffer = null
 
-export var can_be_on_fire = false
+func grid_pos():
+	if grid_pos_buffer == null:
+		grid_pos_buffer = .grid_pos()
+	return grid_pos_buffer
 
 func set_on_fire():
 	if (can_be_on_fire):
-		on_fire = true
+		self.on_fire = true
 		#THINGS
+
+func _to_string():
+	return "Building(" + str(people_inside) + "/" + str(max_people_inside) + ")"
