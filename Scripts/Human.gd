@@ -4,11 +4,12 @@ class_name Human
 const FaceColors = ["#E9CDA1", "#CFA07C", "#F8DEC5", "#F8E3AB", "#CF9763", "#75451F", "#301E11"]
 const BodyColors = ["#32a852", "#6d3dba", "#1d65b3", "#d17e11", "#d64fae", "#db2323", "#34d185"]
 
-onready var roads = $"../../Roads"
+onready var roads = $"../../Navigation2D/Roads"
 
 var walk_time
 var wait_time
 var angle
+var path
 
 func rand_location():
 	randomize()
@@ -19,7 +20,7 @@ func find_valid_location():
 	rand_location()
 	while collision():
 		rand_location()
-	print(grid_pos(position + Vector2(sin(angle), cos(angle)) * walk_time * speed))
+	#print(grid_pos(position + Vector2(sin(angle), cos(angle)) * walk_time * speed))
 
 const STEPS = 5
 
@@ -37,6 +38,10 @@ func _ready():
 	speed = rand_range(10, 20)
 	find_valid_location()
 	wait_time = 0
+	
+	path = $"../../Navigation2D".get_actual_path(position, Vector2(50, 100))
+	$"../../Line2D".points = path
+	print(path)
 
 func _process(delta):
 	if wait_time > 0:
