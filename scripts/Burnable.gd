@@ -24,13 +24,13 @@ var nb_state = 2
 func _ready():
 	set_z()
 	time_remaining = time_alive_on_fire
-	#if $Sprite != null:
-		#nb_state = $Sprite.vframes * $Sprite.hframes
+	if $Sprite != null:
+		nb_state = $Sprite.vframes * $Sprite.hframes
 
 func grid_pos():
 	var y = position.y / (12 * pixel_scale)
 	var x = (position.x + y * 18) / (16 * pixel_scale)
-	return Vector2(x, y)
+	return Vector2(x, y).floor()
 
 func set_z():
 	var pos = grid_pos()
@@ -45,8 +45,6 @@ func set_new_heat():
 	
 	if on_fire && can_be_on_fire:
 		time_remaining -= added_heat
-		print(time_remaining)
-		print(added_heat)
 		if time_remaining < 0:
 			time_remaining = time_alive_on_fire
 			inc_state()
@@ -76,11 +74,11 @@ func inc_state():
 	print(nb_state)
 	state += 1
 	if (state < nb_state):
-		#$Sprite.frame = state
+		$Sprite.frame = state
 		pass
 		
 	elif (state == nb_state):
-		#$Sprite.frame = state
+		$Sprite.frame = state
 		terminated()
 	elif (state > nb_state):
 		terminated()
@@ -101,7 +99,6 @@ func transfer_heat():
 			var building_next_to = buildings.get_building_at(grid_pos() + Vector2(x,y))
 			if building_next_to != null:
 				building_next_to.add_heat(heat_to_transfer)
-				print(Vector2(x,y))
 					
 			var entities_next_to = entities.get_entities_at(grid_pos() + Vector2(x,y))
 			if entities_next_to != null:
