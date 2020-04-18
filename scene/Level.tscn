@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scripts/Grid.gd" type="Script" id=1]
+[ext_resource path="res://scripts/Entities.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Images/TileMaps/tm_road.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Buildings.gd" type="Script" id=3]
 
 [sub_resource type="TileSet" id=1]
 0/name = "tm_road.png 0"
@@ -39,6 +40,7 @@ cell_custom_transform = Transform2D( 16, 0, -6, 12, 0, 0 )
 format = 1
 
 [node name="Buildings" type="Node2D" parent="."]
-script = ExtResource( 1 )
+script = ExtResource( 3 )
 
 [node name="Entities" type="Node2D" parent="."]
+script = ExtResource( 1 )
