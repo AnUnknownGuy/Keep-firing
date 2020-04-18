@@ -1,4 +1,4 @@
-extends Node2D
+extends Building
 tool
 
 export(int, "Normal", "Bushes", "Flowers", "Tree") var type = 0 setget set_type
