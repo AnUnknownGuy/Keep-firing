@@ -9,13 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
+"base": "Burnable",
 "class": "Building",
 "language": "GDScript",
 "path": "res://scripts/Building.gd"
+}, {
+"base": "Node2D",
+"class": "Burnable",
+"language": "GDScript",
+"path": "res://scripts/Burnable.gd"
+}, {
+"base": "Burnable",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://scripts/Entity.gd"
 } ]
 _global_script_class_icons={
-"Building": ""
+"Building": "",
+"Burnable": "",
+"Entity": ""
 }
 
 [application]
