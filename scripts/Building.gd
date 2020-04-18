@@ -1,8 +1,7 @@
 extends Node2D
 class_name Building
 
-onready var trailmap = $"../../TrailMap"
-onready var objects = $"../../Objects"
+onready var buildings = $"../../Buildings"
 
 export var max_people_inside = 0
 var actual_people_inside = max_people_inside
