@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://Resources/Images/Sprite/title.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Images/TileMaps/tm_road.png" type="Texture" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Resources/Images/TileMaps/bt_hot.png" type="Texture" id=20]
 [ext_resource path="res://Resources/Images/TileMaps/bt_normal.png" type="Texture" id=21]
 [ext_resource path="res://Resources/Images/TileMaps/bt_easy.png" type="Texture" id=22]
+[ext_resource path="res://Scripts/Props.gd" type="Script" id=23]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 6, 0, 0, 12, 16, 12, 22, 0 )
@@ -401,7 +402,8 @@ anims/logo = SubResource( 53 )
 [node name="Entities" type="Node2D" parent="."]
 script = ExtResource( 7 )
 
-[node name="Props" type="Node" parent="."]
+[node name="Props" type="Node2D" parent="."]
+script = ExtResource( 23 )
 
 [node name="Buttons" type="Node2D" parent="."]
 
@@ -496,3 +498,6 @@ texture = ExtResource( 14 )
 vframes = 2
 script = ExtResource( 13 )
 show_node_path = "../../Buttons"
+
+[node name="Buildings" type="Node2D" parent="."]
+script = ExtResource( 9 )

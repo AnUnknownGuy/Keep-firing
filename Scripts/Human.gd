@@ -123,12 +123,6 @@ func _process(delta):
 					wait_time = 0
 				else:
 					wait_time = 2.0 * randf()
-			
-			if path != null:
-				var shift_path = []
-				for p in path:
-					shift_path.append(p - position)
-				$Line2D.points = shift_path
 		set_z()
 	else:
 		if timer_falling >  0:
