@@ -12,7 +12,9 @@ func reset_timer():
 	if people_inside == 0:
 		people_timer = 0
 	else:
-		people_timer = rand_range(20, 30) / people_inside
+		people_timer = float(rand_range(1, 15)) / people_inside
+		if on_fire:
+			people_timer = 1.0
 
 var grid_pos_buffer = null
 
@@ -26,12 +28,12 @@ func grid_pos(pos: Vector2 = position):
 
 func _ready():
 	people_inside = round(max_people_inside / 2)
-	people_timer = rand_range(0, 15)
+	reset_timer()
 
 func _process(delta):
 	if people_inside > 0:
 		people_timer -= delta
-		
+
 		if people_timer < 0:
 			reset_timer()
 			spawn_human()
@@ -50,8 +52,9 @@ func exit_pos():
 	return position + disp
 
 func spawn_human():
-	people_inside -= 1
+	randomize()
 	
+	people_inside -= 1
 	var human = human_scene.instance()
 	human.position = exit_pos()
 	entities.add_child(human)
@@ -60,6 +63,11 @@ func spawn_human():
 	human.post_init()
 	
 	human.set_goal(buildings.get_random_building(grid_pos()))
+
+func add_human(human: Human):
+	people_inside += 1
+	if human.on_fire:
+		add_heat(human.max_heat_transmitted)
 
 func _to_string():
 	return "Building(" + str(people_inside) + "/" + str(max_people_inside) + ")"

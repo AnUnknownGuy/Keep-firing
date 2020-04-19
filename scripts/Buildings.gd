@@ -12,8 +12,10 @@ func get_random_building(ignore = null):
 	for b in buildings_dictionnary.values():
 		if b.max_people_inside > 0 and b.grid_pos() != ignore:
 			choices.append(b)
-
-	return choices[floor(randf() * choices.size())]
+	if (choices.size() == 0):
+		return null
+	else:
+		return choices[floor(randf() * choices.size())]
 
 func declare(building: Building):
 	buildings_dictionnary[building.grid_pos()] = building

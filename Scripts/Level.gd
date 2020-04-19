@@ -13,7 +13,7 @@ func _input(event):
 		$Highlight.position = Burnable.pos_from_grid(pos)
 
 func _ready():
-	VisualServer.set_default_clear_color(Color(0.878,0.749,0.596,1.0))
+	VisualServer.set_default_clear_color(Color(0.824,0.824,0.824,1.0))
 
 func _process(delta):
 	burn_timer -= delta

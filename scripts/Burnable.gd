@@ -24,6 +24,7 @@ func _ready():
 	time_remaining = time_alive_on_fire
 	if $Sprite != null:
 		nb_state = $Sprite.vframes * $Sprite.hframes -1
+	if (nb_state < 1): nb_state = 2
 
 func post_init():
 	buildings = owner.get_node("Navigation2D/Buildings")
@@ -88,7 +89,6 @@ func inc_state():
 	state += 1
 	if (state < nb_state):
 		$Sprite.frame = state
-		
 		$Fire.emitting = true
 	
 	elif (state == nb_state):
@@ -123,6 +123,5 @@ func transfer_heat():
 				
 				var entities_next_to = entities.get_entities_at(grid_pos() + Vector2(x,y))
 				if entities_next_to != null:
-					print("ok")
 					for entity in entities_next_to:
 						entity.add_heat(heat_to_transfer)

@@ -1,4 +1,4 @@
 extends Burnable
 class_name Entity
 
-export var speed: int = 0
+export var speed: int = 10
