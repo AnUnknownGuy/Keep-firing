@@ -24,7 +24,7 @@ var nb_state: int = 2
 
 func _ready():
 	time_remaining = time_alive_on_fire
-	if $Sprite != null:
+	if has_node("Sprite"):
 		nb_state = $Sprite.vframes * $Sprite.hframes -1
 	if (nb_state < 1): nb_state = 2
 

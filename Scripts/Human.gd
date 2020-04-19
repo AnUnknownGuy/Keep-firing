@@ -17,29 +17,31 @@ var goal
 var goal_random
 var goal_building
 
-func rand_direction() -> Vector2:
+func find_random_location(angle: float, variation: float) -> float:
 	randomize()
-	var temp_angle = randf() * 2 * PI
-	return Vector2(cos(temp_angle), sin(temp_angle))
-
-func find_random_location():
-	var ran_direction = rand_direction()
 	
-	if collision_with(ran_direction):
-		find_random_location()
+	var temp_angle = (randf() - 0.5) * variation
+	
+	var ran_direction = Vector2(cos(angle + temp_angle), sin(angle + temp_angle))
+	
+	var direction = ran_direction * walk_time * speed
+	
+	if collision_with(direction):
+		return find_random_location(angle, variation)
 	else:
-		goal_random = position + ran_direction
+		return temp_angle + angle
 
 
 func next_movement():
 	randomize()
+	walk_time = randf() * 2.5 + 0.5
+	
 	if randf() < -1 or goal_building == null:
-		print("pas bon L43")
-		find_random_location()
-		angle = goal_random.angle_to_point(position)
+		angle = find_random_location(0, 2 * PI)
 	else:
 		get_next_goal()
 		angle = goal.angle_to_point(position)
+		angle = find_random_location(angle, 0)
 
 
 const STEPS = 5
@@ -117,13 +119,12 @@ func _process(delta):
 			walk_time -= delta
 
 			position += Vector2(cos(angle), sin(angle)) * speed * delta 
-			#print("position :", position, " goal :", goal, " angle :", angle)
 			
 			if walk_time < 0:
-				if not on_fire:
+				if on_fire:
 					wait_time = 0
 				else:
-					wait_time = 0
+					wait_time = 2.0 * randf()
 			
 			if path != null:
 				var shift_path = []
