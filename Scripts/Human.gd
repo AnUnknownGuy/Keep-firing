@@ -10,6 +10,7 @@ var walk_time: float
 var wait_time: float
 var angle: float
 var path
+var is_dead = false
 
 func rand_location():
 	randomize()
@@ -34,27 +35,50 @@ func _ready():
 	$Parts/Face.color = FaceColors[floor(rand_range(0, FaceColors.size()))]
 	$Parts/Body.color = BodyColors[floor(rand_range(0, BodyColors.size()))]
 	
-	speed = rand_range(10, 20)
+	speed = rand_range(2, 4)
 	find_valid_location()
 	wait_time = 0
+	
+	time_remaining = time_alive_on_fire
+	nb_state = 3
+
+
+func inc_state():
+	print("HHAAAAAA")
+	state += 1
+	if (state == 1):
+		print("DEAD")
+		dead()
+	if (state >= nb_state):
+		print("TERMINATED")
+		terminated()
+
+func dead() -> void:
+	is_dead = true
+	pass
+
 
 func _process(delta):
-	if wait_time > 0:
-		wait_time -= delta
-		
-		if wait_time < 0:
-			find_valid_location()
-	else:
-		walk_time -= delta
-		
-		position += Vector2(sin(angle), cos(angle)) * speed * delta
-		
-		if walk_time < 0:
-			wait_time = randf() * 2.5 + 0.5
+	if not is_dead:
+		if wait_time > 0:
+			wait_time -= delta
 			
-#
-#	if name == "Human4":
-#		path = $"../../Navigation2D".get_actual_path(position, $"../Human5".position)
-#		$"../../Line2D".points = path
-#
-	set_z()
+			if wait_time < 0:
+				find_valid_location()
+		else:
+			walk_time -= delta
+			
+			position += Vector2(sin(angle), cos(angle)) * speed * delta
+			
+			if walk_time < 0:
+				wait_time = randf() * 2.5 + 0.5
+				
+	#
+	#	if name == "Human4":
+	#		path = $"../../Navigation2D".get_actual_path(position, $"../Human5".position)
+	#		$"../../Line2D".points = path
+	#
+		set_z()
+
+
+

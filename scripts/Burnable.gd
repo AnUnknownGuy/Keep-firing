@@ -32,7 +32,7 @@ func _ready():
 func grid_pos(pos: Vector2 = position):
 	var y = pos.y / (12 * pixel_scale)
 	var x = (pos.x + pos.y / 2) / (16 * pixel_scale)
-	return Vector2(x, y)
+	return Vector2(x, y).floor()
 
 func set_z():
 	var pos = grid_pos()
@@ -110,6 +110,7 @@ func transfer_heat():
 						
 				var entities_next_to = entities.get_entities_at(grid_pos() + Vector2(x,y))
 				if entities_next_to != null:
+					print("ok")
 					for entity in entities_next_to:
 						entity.add_heat(heat_to_transfer)
 
