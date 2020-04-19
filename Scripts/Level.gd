@@ -7,6 +7,9 @@ onready var props = $Props.get_children()
 export var burn_timer_max: float = 0.5
 var burn_timer = burn_timer_max
 
+func _ready():
+	VisualServer.set_default_clear_color(Color(0.878,0.749,0.596,1.0))
+
 func _process(delta):
 	burn_timer -= delta
 	if burn_timer < 0:

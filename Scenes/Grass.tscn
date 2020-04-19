@@ -4,6 +4,11 @@
 [ext_resource path="res://Resources/Images/TileMaps/tm_grass.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Fire.tscn" type="PackedScene" id=3]
 
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 48, 0, 30, 36, -18, 36, 0, 0 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 48, 0, 30, 36, -18, 36, 0, 0 ) ]
+
 [node name="Grass" type="Node2D"]
 script = ExtResource( 1 )
 max_heat_transmitted = 5
@@ -12,9 +17,8 @@ time_alive_on_fire = 4
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
-offset = Vector2( 5.5, 6 )
-vframes = 2
-hframes = 3
+offset = Vector2( 5, 6 )
+hframes = 6
 
 [node name="Fire" parent="." instance=ExtResource( 3 )]
 position = Vector2( 14.9404, 16.1722 )
