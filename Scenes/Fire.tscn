@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Fire.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 0.800781, 0.062561, 0.062561, 1, 0.882353, 0.45098, 0, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 18.0
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 10.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 34.48
+initial_velocity_random = 0.22
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 8.05
+scale = 3.0
+color_ramp = SubResource( 5 )
+hue_variation = 0.08
+hue_variation_random = 0.45
+
+[node name="Fire" type="Particles2D"]
+emitting = false
+lifetime = 2.0
+process_material = SubResource( 3 )
+script = ExtResource( 1 )

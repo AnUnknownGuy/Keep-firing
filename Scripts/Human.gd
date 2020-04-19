@@ -6,9 +6,9 @@ const BodyColors = ["#32a852", "#6d3dba", "#1d65b3", "#d17e11", "#d64fae", "#db2
 
 var nav
 
-var walk_time
-var wait_time
-var angle
+var walk_time: float
+var wait_time: float
+var angle: float
 var path
 var goal
 var goal_building
@@ -76,5 +76,4 @@ func _process(delta):
 			for p in path:
 				shift_path.append(p - position)
 			$Line2D.points = shift_path
-	
 	set_z()

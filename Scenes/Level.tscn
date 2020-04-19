@@ -12,6 +12,8 @@
 [ext_resource path="res://Scripts/Navigation2D.gd" type="Script" id=10]
 [ext_resource path="res://Resources/Images/Sprite/building1.png" type="Texture" id=11]
 [ext_resource path="res://Resources/Images/TileMaps/tm_grass.png" type="Texture" id=12]
+[ext_resource path="res://Scripts/Props.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/Prop1.tscn" type="PackedScene" id=12]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 6, 0, 0, 12, 16, 12, 22, 0 )
@@ -439,3 +441,35 @@ width = 3.0
 
 [node name="Entities" type="Node2D" parent="."]
 script = ExtResource( 2 )
+
+[node name="Human4" parent="Entities" instance=ExtResource( 8 )]
+position = Vector2( 179.059, 10.1241 )
+
+[node name="Human5" parent="Entities" instance=ExtResource( 8 )]
+position = Vector2( 754.685, 374.253 )
+
+[node name="Props" type="Node2D" parent="."]
+script = ExtResource( 11 )
+
+[node name="Prop1" parent="Props" instance=ExtResource( 12 )]
+position = Vector2( 270, 36 )
+
+[node name="Prop2" parent="Props" instance=ExtResource( 12 )]
+position = Vector2( 234, 108 )
+current_heat = 0.0
+on_fire = false
+
+[node name="Prop4" parent="Props" instance=ExtResource( 12 )]
+position = Vector2( 216, 144 )
+current_heat = 0.0
+on_fire = false
+
+[node name="Prop5" parent="Props" instance=ExtResource( 12 )]
+position = Vector2( 168, 144 )
+current_heat = 0.0
+on_fire = false
+
+[node name="Prop3" parent="Props" instance=ExtResource( 12 )]
+position = Vector2( 252, 72 )
+current_heat = 0.0
+on_fire = false

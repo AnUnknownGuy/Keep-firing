@@ -1,34 +1,36 @@
 extends Node2D
 class_name Burnable
 
-var pixel_scale = 3
+var pixel_scale: int = 3
 
 var buildings
 var entities
+var props
 
-export var max_heat_transmitted = 3
-export var max_heat_resist = 20
+export var max_heat_transmitted: int = 3
+export var max_heat_resist: float = 20
 
-export var time_alive_on_fire = 0
-var time_remaining = 0
+export var time_alive_on_fire: int = 0
+var time_remaining: int = 0
 
-export var can_be_on_fire = true
+export var can_be_on_fire: bool = true
 
-export var current_heat = 0
-var added_heat = 0
+export var current_heat: float = 0
+var added_heat: int = 0
 export var on_fire = false
 
-var state = 0
-var nb_state = 2
+var state: int = 0
+var nb_state: int = 2
 
 func _ready():
 	time_remaining = time_alive_on_fire
 	if $Sprite != null:
-		nb_state = $Sprite.vframes * $Sprite.hframes
+		nb_state = $Sprite.vframes * $Sprite.hframes -1
 
 func post_init():
 	buildings = owner.get_node("Navigation2D/Buildings")
 	entities = owner.get_node("Entities")
+	props = owner.get_node("Props")
 	set_z()
 
 func grid_pos(pos: Vector2 = position):
@@ -43,32 +45,29 @@ func set_z():
 	z_index = fx + 0.8 * fy + 0.2 * (pos.y)
 
 func add_heat(heat: float):
+	
 	added_heat += heat
 
 func set_new_heat():
 	
 	if on_fire && can_be_on_fire:
-		time_remaining -= added_heat
+		time_remaining -= 1
 		if time_remaining < 0:
 			time_remaining = time_alive_on_fire
 			inc_state()
+	else:
+		if (can_be_on_fire && added_heat != 0):
+			current_heat += added_heat
+			var c: float = current_heat / max_heat_resist
+			modulate = Color(1, 1 - 0.3 * c, 1 - 0.3 * c, 1)
 			
-			if time_remaining < 0:
-				time_remaining = time_alive_on_fire
-				inc_state()
-				
-		else:
-			if (can_be_on_fire && added_heat != 0):
-				current_heat += added_heat
-				var c = current_heat / max_heat_resist
-				modulate = Color(1, 1 - 0.6 * c, 1 - 0.6 * c, 1)
-			
-			if (current_heat > max_heat_resist):
-				if (not on_fire):
-					set_on_fire()
-				current_heat = max_heat_resist
+		if (current_heat > max_heat_resist):
+			modulate = Color(1, 1, 1, 1)
+			if (not on_fire):
+				set_on_fire()
+			current_heat = max_heat_resist
 		
-		added_heat = 0
+	added_heat = 0
 
 func set_on_fire():
 	if can_be_on_fire:
@@ -79,16 +78,19 @@ func inc_state():
 	state += 1
 	if (state < nb_state):
 		$Sprite.frame = state
-		pass
 		
+		$Fire.emitting = true
+	
 	elif (state == nb_state):
 		$Sprite.frame = state
 		terminated()
 	elif (state > nb_state):
 		terminated()
+	
+	$Fire.set_state(state, nb_state)
 
 func terminated():
-		modulate = Color(0.4, 0.4, 0.4, 1)
+		modulate = Color(0.9, 0.9, 0.9, 1)
 		on_fire = false
 		can_be_on_fire = false
 		current_heat = 0
@@ -98,14 +100,19 @@ func transfer_heat():
 	if (heat_to_transfer >= max_heat_transmitted):
 		heat_to_transfer = max_heat_transmitted
 	
+	
 	for x in range(-1, 2):
 		for y in range(-1, 2):
-			var building_next_to = buildings.get_building_at(grid_pos() + Vector2(x,y))
-			if building_next_to != null:
-				building_next_to.add_heat(heat_to_transfer)
-					
-			var entities_next_to = entities.get_entities_at(grid_pos() + Vector2(x,y))
-			if entities_next_to != null:
-				for entity in entities_next_to:
-					entity.add_heat(heat_to_transfer)
-
+			if  x==0 or y==0:
+				var building_next_to = buildings.get_building_at(grid_pos() + Vector2(x,y))
+				if building_next_to != null:
+					building_next_to.add_heat(heat_to_transfer)
+				
+				var prop_next_to = props.get_building_at(grid_pos() + Vector2(x,y))
+				if prop_next_to != null:
+					prop_next_to.add_heat(heat_to_transfer)
+				
+				var entities_next_to = entities.get_entities_at(grid_pos() + Vector2(x,y))
+				if entities_next_to != null:
+					for entity in entities_next_to:
+						entity.add_heat(heat_to_transfer)
