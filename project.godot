@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Human",
 "language": "GDScript",
 "path": "res://Scripts/Human.gd"
+}, {
+"base": "Burnable",
+"class": "Prop",
+"language": "GDScript",
+"path": "res://Scripts/Prop.gd"
 } ]
 _global_script_class_icons={
 "Building": "",
 "Burnable": "",
 "Entity": "",
-"Human": ""
+"Human": "",
+"Prop": ""
 }
 
 [application]

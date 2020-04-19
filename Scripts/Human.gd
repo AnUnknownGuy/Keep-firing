@@ -6,9 +6,9 @@ const BodyColors = ["#32a852", "#6d3dba", "#1d65b3", "#d17e11", "#d64fae", "#db2
 
 onready var roads = $"../../Navigation2D/Roads"
 
-var walk_time
-var wait_time
-var angle
+var walk_time: float
+var wait_time: float
+var angle: float
 var path
 
 func rand_location():
@@ -51,9 +51,10 @@ func _process(delta):
 		
 		if walk_time < 0:
 			wait_time = randf() * 2.5 + 0.5
-	
-	if name == "Human4":
-		path = $"../../Navigation2D".get_actual_path(position, $"../Human5".position)
-		$"../../Line2D".points = path
-	
+			
+#
+#	if name == "Human4":
+#		path = $"../../Navigation2D".get_actual_path(position, $"../Human5".position)
+#		$"../../Line2D".points = path
+#
 	set_z()
