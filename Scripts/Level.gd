@@ -7,6 +7,11 @@ onready var props = $Props.get_children()
 export var burn_timer_max: float = 0.5
 var burn_timer = burn_timer_max
 
+func _input(event):
+	if event is InputEventMouseMotion:
+		var pos = Burnable.s_grid_pos(event.position)
+		$TilePreview.position = Burnable.pos_from_grid(pos)
+
 func _ready():
 	VisualServer.set_default_clear_color(Color(0.824,0.824,0.824,1.0))
 

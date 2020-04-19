@@ -1,8 +1,6 @@
 extends Node2D
 class_name Burnable
 
-var pixel_scale: int = 3
-
 var buildings
 var entities
 var props
@@ -35,8 +33,20 @@ func post_init():
 	set_z()
 
 func grid_pos(pos: Vector2 = position):
+	return s_grid_pos(pos)
+
+static func s_grid_pos(pos: Vector2):
+	var pixel_scale = 3
+	
 	var y = pos.y / (12 * pixel_scale)
 	var x = (pos.x + pos.y / 2) / (16 * pixel_scale)
+	return Vector2(x, y).floor()
+
+static func pos_from_grid(pos: Vector2):
+	var pixel_scale = 3
+	
+	var y = pos.y * 12 * pixel_scale
+	var x = pos.x * 16 * pixel_scale - y / 2
 	return Vector2(x, y).floor()
 
 func set_z():
