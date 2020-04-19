@@ -3,8 +3,8 @@ class_name Burnable
 
 var pixel_scale = 3
 
-onready var buildings = $"../../Buildings"
-onready var entities = $"../../Entities"
+var buildings
+var entities
 
 export var max_heat_transmitted = 3
 export var max_heat_resist = 20
@@ -22,11 +22,14 @@ var state = 0
 var nb_state = 2
 
 func _ready():
-	set_z()
 	time_remaining = time_alive_on_fire
 	if $Sprite != null:
 		nb_state = $Sprite.vframes * $Sprite.hframes
 
+func post_init():
+	buildings = owner.get_node("Navigation2D/Buildings")
+	entities = owner.get_node("Entities")
+	set_z()
 
 func grid_pos(pos: Vector2 = position):
 	var y = pos.y / (12 * pixel_scale)
@@ -104,5 +107,5 @@ func transfer_heat():
 			var entities_next_to = entities.get_entities_at(grid_pos() + Vector2(x,y))
 			if entities_next_to != null:
 				for entity in entities_next_to:
-					entity.heat_up(heat_to_transfer)
+					entity.add_heat(heat_to_transfer)
 

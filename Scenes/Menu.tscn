@@ -1,17 +1,14 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=62 format=2]
 
-[ext_resource path="res://Scripts/Buildings.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Entities.gd" type="Script" id=2]
-[ext_resource path="res://Resources/Images/TileMaps/tm_road.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/Water.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Grass.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Building1.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scripts/Level.gd" type="Script" id=7]
-[ext_resource path="res://Scenes/Human.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scripts/Roads.gd" type="Script" id=9]
-[ext_resource path="res://Scripts/Navigation2D.gd" type="Script" id=10]
-[ext_resource path="res://Resources/Images/Sprite/building1.png" type="Texture" id=11]
-[ext_resource path="res://Resources/Images/TileMaps/tm_grass.png" type="Texture" id=12]
+[ext_resource path="res://Resources/Images/Sprite/title.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Images/TileMaps/tm_road.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Images/Sprite/building1.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Images/TileMaps/tm_grass.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Navigation2D.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Entities.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Building1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Buildings.gd" type="Script" id=9]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 6, 0, 0, 12, 16, 12, 22, 0 )
@@ -220,7 +217,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 [sub_resource type="TileSet" id=47]
 resource_local_to_scene = true
 0/name = "tm_road.png 0"
-0/texture = ExtResource( 3 )
+0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 176, 72 )
@@ -243,7 +240,7 @@ resource_local_to_scene = true
 0/shapes = [  ]
 0/z_index = 0
 1/name = "building1.png 1"
-1/texture = ExtResource( 11 )
+1/texture = ExtResource( 3 )
 1/tex_offset = Vector2( 1, -9 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 0, 0, 21, 21 )
@@ -257,7 +254,7 @@ resource_local_to_scene = true
 1/shapes = [  ]
 1/z_index = 0
 2/name = "tm_grass.png 2"
-2/texture = ExtResource( 12 )
+2/texture = ExtResource( 4 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 0, 88, 12 )
@@ -278,164 +275,96 @@ resource_local_to_scene = true
 2/shapes = [  ]
 2/z_index = 0
 
-[node name="Level" type="Node2D"]
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_horizontal_guides_": [  ],
-"_edit_vertical_guides_": [  ]
-}
+[node name="Menu" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
-script = ExtResource( 10 )
+script = ExtResource( 6 )
 
-[node name="Roads" type="TileMap" parent="Navigation2D"]
+[node name="TileMap" type="TileMap" parent="Navigation2D"]
 scale = Vector2( 3, 3 )
 mode = 2
 tile_set = SubResource( 47 )
-cell_size = Vector2( 16, 12 )
 cell_custom_transform = Transform2D( 16, 0, -6, 12, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 2, 0, 262144, 3, 0, 327684, 4, 0, 327684, 5, 0, 327684, 6, 0, 131072, 7, 0, 327684, 8, 0, 262145, 65538, 0, 262148, 65542, 0, 262148, 65544, 0, 262148, 131074, 0, 327680, 131075, 0, 131072, 131076, 0, 327684, 131077, 0, 327684, 131078, 0, 196609, 131079, 0, 131072, 131080, 0, 196609, 131081, 0, 327684, 131082, 0, 327684, 131083, 0, 327684, 131084, 0, 327684, 131085, 0, 262145, 196611, 0, 262148, 196615, 0, 262148, 196621, 0, 262148, 262147, 0, 327680, 262148, 0, 327684, 262149, 0, 131072, 262150, 0, 327684, 262151, 0, 196609, 262152, 0, 327684, 262153, 0, 262145, 262157, 0, 327680, 262158, 0, 262145, 327685, 0, 262148, 327689, 0, 262148, 327694, 0, 262148, 393221, 0, 262148, 393225, 0, 196608, 393226, 0, 327684, 393227, 0, 327684, 393228, 0, 131072, 393229, 0, 327684, 393230, 0, 327681, 458757, 0, 327680, 458758, 0, 262145, 458761, 0, 262148, 458764, 0, 262148, 524294, 0, 262148, 524297, 0, 262148, 524300, 0, 262148, 589830, 0, 327680, 589831, 0, 327684, 589832, 0, 327684, 589833, 0, 196609, 589834, 0, 327684, 589835, 0, 327684, 589836, 0, 327681 )
-script = ExtResource( 9 )
+tile_data = PoolIntArray( -65534, 0, 262149, -65523, 0, 262149, -65517, 0, 262149, 0, 2, 2, 1, 2, 2, 2, 0, 327680, 3, 0, 262145, 4, 2, 0, 5, 2, 0, 6, 2, 3, 7, 2, 0, 8, 2, 0, 9, 2, 1, 10, 2, 0, 11, 2, 0, 12, 2, 0, 13, 0, 327680, 14, 0, 262145, 15, 2, 3, 16, 2, 3, 17, 2, 2, 18, 2, 2, 19, 0, 262148, 20, 2, 0, 21, 2, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 1, 65539, 0, 262148, 65540, 2, 0, 65541, 2, 2, 65542, 2, 0, 65543, 2, 0, 65544, 2, 1, 65545, 2, 3, 65546, 2, 2, 65547, 2, 0, 65548, 2, 3, 65549, 2, 1, 65550, 0, 327680, 65551, 0, 327684, 65552, 0, 327684, 65553, 0, 327684, 65554, 0, 327684, 65555, 0, 327681, 65556, 2, 2, 65557, 2, 0, 131072, 2, 1, 131073, 2, 0, 131074, 2, 3, 131075, 0, 262148, 131076, 2, 0, 131077, 2, 0, 131078, 2, 0, 131079, 2, 0, 131080, 2, 2, 131081, 2, 3, 131082, 2, 0, 131083, 2, 1, 131084, 2, 0, 131085, 2, 3, 131086, 2, 0, 131087, 2, 1, 131088, 2, 1, 131089, 2, 0, 131090, 2, 3, 131091, 2, 0, 131092, 2, 0, 131093, 2, 0, 131094, 2, 3, 196609, 2, 0, 196610, 2, 1, 196611, 0, 327680, 196612, 0, 262145, 196613, 2, 2, 196614, 2, 3, 196615, 2, 0, 196616, 2, 0, 196617, 2, 3, 196618, 2, 3, 196619, 2, 2, 196620, 2, 1, 196621, 2, 0, 196622, 2, 1, 196623, 2, 0, 196624, 2, 3, 196625, 2, 3, 196626, 2, 0, 196627, 2, 0, 196628, 2, 0, 196629, 2, 0, 196630, 2, 0, 262145, 2, 3, 262146, 2, 0, 262147, 2, 0, 262148, 0, 262148, 262149, 2, 1, 262150, 2, 3, 262151, 2, 0, 262152, 2, 1, 262153, 2, 3, 262154, 2, 0, 262155, 2, 0, 262156, 2, 0, 262157, 2, 0, 262158, 2, 0, 262159, 2, 0, 262160, 2, 2, 262161, 2, 0, 262162, 2, 0, 262163, 2, 0, 262164, 2, 0, 262165, 2, 2, 262166, 2, 0, 262167, 2, 0, 327681, 2, 0, 327682, 2, 0, 327683, 2, 3, 327684, 0, 262148, 327685, 2, 0, 327686, 2, 3, 327687, 2, 0, 327688, 2, 0, 327689, 2, 0, 327690, 2, 0, 327691, 2, 3, 327692, 2, 0, 327693, 2, 3, 327694, 2, 3, 327695, 2, 3, 327696, 2, 1, 327697, 2, 3, 327698, 2, 1, 327699, 2, 1, 327700, 2, 0, 327701, 2, 0, 327702, 0, 262144, 327703, 0, 262150, 393218, 2, 0, 393219, 2, 0, 393220, 0, 327680, 393221, 0, 262145, 393222, 2, 0, 393223, 2, 1, 393224, 2, 0, 393225, 2, 0, 393226, 2, 0, 393227, 2, 0, 393228, 2, 3, 393229, 2, 0, 393230, 2, 0, 393231, 2, 0, 393232, 2, 0, 393233, 2, 1, 393234, 2, 3, 393235, 2, 0, 393236, 2, 3, 393237, 2, 3, 393238, 0, 262148, 393239, 2, 0, 458754, 2, 0, 458755, 2, 1, 458756, 2, 0, 458757, 0, 262148, 458758, 2, 2, 458759, 2, 0, 458761, 2, 0, 458762, 2, 1, 458764, 2, 0, 458765, 2, 0, 458766, 2, 0, 458767, 2, 0, 458768, 2, 3, 458769, 2, 0, 458770, 2, 0, 458771, 2, 1, 458773, 2, 2, 458774, 0, 262148, 458775, 2, 1, 458776, 2, 0, 524290, 0, 327685, 524291, 0, 327684, 524292, 0, 327684, 524293, 0, 196609, 524294, 0, 327684, 524295, 0, 131072, 524296, 0, 327684, 524297, 0, 327684, 524298, 0, 327684, 524299, 0, 327684, 524300, 0, 327684, 524301, 0, 327684, 524302, 0, 327684, 524303, 0, 131072, 524304, 0, 327684, 524305, 0, 327684, 524306, 0, 327684, 524307, 0, 327684, 524308, 0, 131072, 524309, 0, 327684, 524310, 0, 196609, 524311, 0, 327684, 524312, 0, 327684, 524313, 0, 262150, 589827, 2, 0, 589828, 2, 0, 589830, 2, 0, 589831, 0, 262148, 589832, 2, 1, 589833, 2, 0, 589835, 2, 0, 589836, 2, 2, 589837, 2, 0, 589838, 2, 0, 589839, 0, 262148, 589840, 2, 0, 589841, 2, 0, 589843, 2, 2, 589844, 0, 262148, 589846, 2, 2, 589847, 2, 3, 589848, 2, 0, 655363, 2, 0, 655364, 2, 0, 655365, 2, 3, 655366, 2, 2, 655367, 0, 262148, 655369, 2, 0, 655370, 2, 2, 655371, 2, 1, 655372, 2, 1, 655375, 0, 262148, 655376, 2, 0, 655377, 2, 2, 655378, 2, 0, 655379, 2, 0, 655380, 0, 262148, 655381, 2, 0, 655383, 2, 0, 655384, 2, 1, 655385, 2, 1, 720900, 2, 1, 720901, 2, 0, 720902, 2, 2, 720903, 0, 327680, 720904, 0, 131072, 720905, 0, 327684, 720906, 0, 327684, 720907, 0, 327684, 720908, 0, 327684, 720909, 0, 327684, 720910, 0, 327684, 720911, 0, 327681, 720912, 2, 0, 720913, 0, 327685, 720914, 0, 327684, 720915, 0, 327684, 720916, 0, 0, 720917, 0, 327684, 720918, 0, 262145, 720919, 2, 2, 720920, 2, 3, 720921, 2, 0, 786436, 2, 0, 786437, 2, 0, 786438, 2, 3, 786439, 2, 0, 786440, 0, 262148, 786442, 2, 0, 786443, 2, 2, 786444, 2, 0, 786445, 2, 0, 786446, 2, 0, 786447, 2, 0, 786448, 2, 1, 786449, 2, 0, 786450, 2, 1, 786452, 0, 262148, 786453, 2, 0, 786454, 0, 262148, 786455, 2, 0, 786456, 2, 0, 786457, 2, 0, 786458, 2, 0, 851972, 2, 1, 851973, 2, 0, 851974, 2, 0, 851976, 0, 262148, 851977, 2, 0, 851979, 2, 0, 851980, 2, 0, 851981, 2, 2, 851982, 2, 0, 851983, 2, 0, 851985, 2, 0, 851986, 2, 0, 851987, 2, 1, 851988, 0, 262148, 851990, 0, 262148, 851991, 2, 0, 851992, 2, 0, 851993, 2, 3, 851994, 2, 0, 917509, 2, 1, 917510, 2, 0, 917511, 2, 0, 917512, 0, 327680, 917513, 0, 327684, 917514, 0, 327684, 917515, 0, 327684, 917516, 0, 327684, 917517, 0, 327684, 917518, 0, 327684, 917519, 0, 131072, 917520, 0, 327684, 917521, 0, 327684, 917522, 0, 327684, 917523, 0, 327684, 917524, 0, 196609, 917525, 0, 327684, 917526, 0, 327681, 917527, 2, 3, 917528, 2, 1, 917529, 2, 0, 917530, 2, 0, 983045, 2, 0, 983046, 2, 0, 983047, 2, 2, 983048, 2, 0, 983049, 2, 0, 983050, 2, 3, 983051, 2, 0, 983052, 2, 0, 983053, 2, 0, 983054, 2, 3, 983055, 0, 262148, 983056, 2, 3, 983057, 2, 3, 983058, 2, 1, 983059, 2, 0, 983060, 2, 3, 983061, 2, 2, 983062, 2, 1, 983063, 2, 0, 983064, 2, 2, 983065, 2, 3, 983066, 2, 0, 983067, 2, 0, 1048581, 2, 0, 1048582, 2, 0, 1048583, 2, 3, 1048584, 2, 2, 1048585, 2, 0, 1048586, 2, 1, 1048587, 2, 0, 1048588, 2, 3, 1048589, 2, 0, 1048590, 2, 2, 1048591, 0, 262148, 1048592, 2, 1, 1048593, 2, 0, 1048594, 2, 0, 1048595, 2, 1, 1048596, 2, 1, 1048597, 2, 1, 1048598, 2, 0, 1048599, 2, 2, 1048600, 2, 0, 1048601, 2, 0, 1048602, 2, 0, 1048603, 2, 2, 1114127, 0, 327686 )
 
 [node name="Buildings" type="Node2D" parent="Navigation2D"]
-script = ExtResource( 1 )
+script = ExtResource( 9 )
 
-[node name="Building1" parent="Navigation2D/Buildings" instance=ExtResource( 6 )]
-position = Vector2( 318, 36 )
-
-[node name="Building2" parent="Navigation2D/Buildings" instance=ExtResource( 6 )]
-position = Vector2( 486, 180 )
-
-[node name="Water" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 126, 36 )
-
-[node name="Water2" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 174, 36 )
-
-[node name="Water3" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 222, 36 )
-
-[node name="Water4" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 354, 252 )
-
-[node name="Water5" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 402, 252 )
-
-[node name="Water6" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 336, 288 )
-
-[node name="Water7" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 384, 288 )
-
-[node name="Grass" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 138, 108 )
-z_index = 7
-max_people_inside = ExtResource( 8 )
-
-[node name="Grass4" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 198, 180 )
-z_index = 11
-max_people_inside = ExtResource( 8 )
-
-[node name="Grass5" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 246, 180 )
-z_index = 12
-max_people_inside = ExtResource( 8 )
-type = 2
-
-[node name="Grass6" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 276, 216 )
-z_index = 14
-max_people_inside = ExtResource( 8 )
-
-[node name="Grass7" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 228, 216 )
-z_index = 13
-max_people_inside = ExtResource( 8 )
-type = 3
-
-[node name="Grass8" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 180, 216 )
-z_index = 12
-max_people_inside = ExtResource( 8 )
-type = 1
-
-[node name="Grass9" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
+[node name="Building1" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 258, 252 )
-z_index = 15
-max_people_inside = ExtResource( 8 )
-type = 1
+max_people_inside = 0
 
-[node name="Grass10" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 240, 288 )
-z_index = 16
-max_people_inside = ExtResource( 8 )
+[node name="Building2" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 402, 252 )
+max_people_inside = 0
 
-[node name="Grass11" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 192, 288 )
-z_index = 15
-max_people_inside = ExtResource( 8 )
+[node name="Building3" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 834, 252 )
+max_people_inside = 0
 
-[node name="Grass12" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 330, 108 )
-z_index = 15
-max_people_inside = ExtResource( 8 )
+[node name="Building4" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 846, 324 )
+max_people_inside = 0
 
-[node name="Grass13" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 378, 108 )
-z_index = 16
-max_people_inside = ExtResource( 8 )
-type = 2
+[node name="Building5" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 876, 360 )
+max_people_inside = 0
 
-[node name="Grass14" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 408, 144 )
-z_index = 14
-max_people_inside = ExtResource( 8 )
+[node name="Building6" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 702, 324 )
+max_people_inside = 0
 
-[node name="Grass15" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 456, 144 )
-z_index = 15
-max_people_inside = ExtResource( 8 )
-type = 2
+[node name="Building7" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 318, 324 )
+max_people_inside = 0
 
-[node name="Grass16" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 426, 108 )
-z_index = 13
-max_people_inside = ExtResource( 8 )
-type = 3
+[node name="Building8" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 78, 324 )
+max_people_inside = 0
 
-[node name="Grass17" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 474, 108 )
-z_index = 14
-max_people_inside = ExtResource( 8 )
+[node name="Building9" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 204, 360 )
+max_people_inside = 0
 
-[node name="Grass18" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 522, 108 )
-z_index = 15
-max_people_inside = ExtResource( 8 )
+[node name="Building13" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 102, 468 )
+max_people_inside = 0
 
-[node name="Grass19" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 504, 144 )
-z_index = 16
-max_people_inside = ExtResource( 8 )
-type = 1
+[node name="Building14" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 246, 468 )
+max_people_inside = 0
 
-[node name="Grass2" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 186, 108 )
-z_index = 8
-on_fire = true
-max_people_inside = ExtResource( 8 )
-type = 2
+[node name="Building15" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 534, 468 )
+max_people_inside = 0
 
-[node name="Grass3" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 234, 108 )
-z_index = 9
-max_people_inside = ExtResource( 8 )
-type = 1
+[node name="Building16" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 696, 432 )
+max_people_inside = 0
 
-[node name="Line2D" type="Line2D" parent="."]
-width = 3.0
+[node name="Building17" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 774, 468 )
+max_people_inside = 0
+
+[node name="Building12" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 216, 432 )
+max_people_inside = 0
+
+[node name="Building10" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 444, 360 )
+max_people_inside = 0
+
+[node name="Building11" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
+position = Vector2( 492, 360 )
+max_people_inside = 0
+
+[node name="title" type="Sprite" parent="."]
+position = Vector2( 512, 137 )
+scale = Vector2( 6, 6 )
+z_index = 4096
+texture = ExtResource( 1 )
 
 [node name="Entities" type="Node2D" parent="."]
-script = ExtResource( 2 )
+script = ExtResource( 7 )
