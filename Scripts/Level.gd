@@ -10,7 +10,7 @@ var burn_timer = burn_timer_max
 func _input(event):
 	if event is InputEventMouseMotion:
 		var pos = Burnable.s_grid_pos(event.position)
-		$Highlight.position = Burnable.pos_from_grid(pos)
+		$TilePreview.position = Burnable.pos_from_grid(pos)
 
 func _ready():
 	VisualServer.set_default_clear_color(Color(0.824,0.824,0.824,1.0))

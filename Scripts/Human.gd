@@ -54,7 +54,6 @@ func _ready():
 	$Parts/Face.color = FaceColors[floor(rand_range(0, FaceColors.size()))]
 	var bodycol = BodyColors[floor(rand_range(0, BodyColors.size()))]
 	$Parts/Body.color = bodycol
-	$Line2D.default_color = bodycol
 	
 	nav = $"../../Navigation2D"
 	
@@ -63,7 +62,6 @@ func _ready():
 	
 	time_remaining = time_alive_on_fire
 	nb_state = 3
-
 
 func inc_state():
 	state += 1
@@ -124,12 +122,6 @@ func _process(delta):
 					wait_time = 0
 				else:
 					wait_time = 0
-			
-			if path != null:
-				var shift_path = []
-				for p in path:
-					shift_path.append(p - position)
-				$Line2D.points = shift_path
 		set_z()
 	else:
 		if timer_falling >  0:
