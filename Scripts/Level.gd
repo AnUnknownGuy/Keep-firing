@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var buildings = $Buildings.get_children()
+onready var buildings = $"Navigation2D/Buildings".get_children()
 onready var entities = $Entities.get_children()
 onready var props = $Props.get_children()
 

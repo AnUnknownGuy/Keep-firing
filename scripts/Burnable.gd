@@ -100,7 +100,6 @@ func transfer_heat():
 	if (heat_to_transfer >= max_heat_transmitted):
 		heat_to_transfer = max_heat_transmitted
 	
-	
 	for x in range(-1, 2):
 		for y in range(-1, 2):
 			if  x==0 or y==0:

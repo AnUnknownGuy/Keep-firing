@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://Resources/Images/Sprite/title.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Images/TileMaps/tm_road.png" type="Texture" id=2]
@@ -9,6 +9,19 @@
 [ext_resource path="res://Scripts/Entities.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Building1.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Buildings.gd" type="Script" id=9]
+[ext_resource path="res://Resources/Images/TileMaps/bt_credits.png" type="Texture" id=10]
+[ext_resource path="res://Resources/Images/TileMaps/bt_editor.png" type="Texture" id=11]
+[ext_resource path="res://Resources/Images/TileMaps/bt_play.png" type="Texture" id=12]
+[ext_resource path="res://Scripts/Button.gd" type="Script" id=13]
+[ext_resource path="res://Resources/Images/TileMaps/bt_back.png" type="Texture" id=14]
+[ext_resource path="res://Resources/Images/Sprite/credits.png" type="Texture" id=15]
+[ext_resource path="res://Scenes/HeartParticles.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Resources/Images/Particles/p_heart4.png" type="Texture" id=17]
+[ext_resource path="res://Resources/Images/Particles/p_heart2.png" type="Texture" id=18]
+[ext_resource path="res://Resources/Images/Particles/p_heart3.png" type="Texture" id=19]
+[ext_resource path="res://Resources/Images/TileMaps/bt_hot.png" type="Texture" id=20]
+[ext_resource path="res://Resources/Images/TileMaps/bt_normal.png" type="Texture" id=21]
+[ext_resource path="res://Resources/Images/TileMaps/bt_easy.png" type="Texture" id=22]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 6, 0, 0, 12, 16, 12, 22, 0 )
@@ -275,6 +288,31 @@ resource_local_to_scene = true
 2/shapes = [  ]
 2/z_index = 0
 
+[sub_resource type="Animation" id=53]
+resource_name = "logo"
+length = 3.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Title:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 138, -0.5, -1, 0.5, 1, 150, -0.5, -1, 0.5, -1, 138, -0.5, 1, 0.5, 1 ),
+"times": PoolRealArray( 0, 1.5, 3 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Shadow:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 525, -0.25, 0, 0.5, 0, 515, -0.25, 0, 0.5, 0, 525, -0.25, 0, 0.5, 0 ),
+"times": PoolRealArray( 0, 1.5, 3 )
+}
+
 [node name="Menu" type="Node2D"]
 script = ExtResource( 5 )
 
@@ -360,11 +398,118 @@ max_people_inside = 0
 position = Vector2( 492, 360 )
 max_people_inside = 0
 
-[node name="title" type="Sprite" parent="."]
-position = Vector2( 512, 137 )
+[node name="Shadow" type="Sprite" parent="."]
+self_modulate = Color( 0, 0, 0, 0.392157 )
+position = Vector2( 525, 288 )
 scale = Vector2( 6, 6 )
-z_index = 4096
+z_index = 999
 texture = ExtResource( 1 )
+
+[node name="Title" type="Sprite" parent="."]
+position = Vector2( 512, 138 )
+scale = Vector2( 6, 6 )
+z_index = 1000
+texture = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "logo"
+anims/logo = SubResource( 53 )
 
 [node name="Entities" type="Node2D" parent="."]
 script = ExtResource( 7 )
+
+[node name="Props" type="Node" parent="."]
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="bt_credits" type="Sprite" parent="Buttons"]
+position = Vector2( 765.967, 400 )
+scale = Vector2( 4, 4 )
+z_index = 1001
+texture = ExtResource( 10 )
+vframes = 2
+script = ExtResource( 13 )
+show_node_path = "../../Credits"
+
+[node name="bt_editor" type="Sprite" parent="Buttons"]
+position = Vector2( 271.34, 400 )
+scale = Vector2( 4, 4 )
+z_index = 1001
+z_as_relative = false
+texture = ExtResource( 11 )
+vframes = 2
+script = ExtResource( 13 )
+
+[node name="bt_play" type="Sprite" parent="Buttons"]
+position = Vector2( 512, 400 )
+scale = Vector2( 6, 6 )
+z_index = 1001
+texture = ExtResource( 12 )
+vframes = 2
+script = ExtResource( 13 )
+show_node_path = "../../Difficulty"
+
+[node name="Credits" type="Node2D" parent="."]
+visible = false
+
+[node name="bt_back" type="Sprite" parent="Credits"]
+position = Vector2( 512, 538 )
+scale = Vector2( 4, 4 )
+z_index = 1001
+texture = ExtResource( 14 )
+vframes = 2
+script = ExtResource( 13 )
+show_node_path = "../../Buttons"
+
+[node name="credits" type="Sprite" parent="Credits"]
+position = Vector2( 512, 406 )
+scale = Vector2( 4, 4 )
+z_index = 1001
+texture = ExtResource( 15 )
+
+[node name="Particles2D" parent="Credits" instance=ExtResource( 16 )]
+
+[node name="Particles2D2" parent="Credits" instance=ExtResource( 16 )]
+texture = ExtResource( 18 )
+
+[node name="Particles2D3" parent="Credits" instance=ExtResource( 16 )]
+texture = ExtResource( 19 )
+
+[node name="Particles2D4" parent="Credits" instance=ExtResource( 16 )]
+texture = ExtResource( 17 )
+
+[node name="Difficulty" type="Node2D" parent="."]
+visible = false
+
+[node name="bt_easy" type="Sprite" parent="Difficulty"]
+position = Vector2( 248, 400 )
+scale = Vector2( 4, 4 )
+z_index = 1001
+texture = ExtResource( 22 )
+vframes = 2
+script = ExtResource( 13 )
+
+[node name="bt_normal" type="Sprite" parent="Difficulty"]
+position = Vector2( 512, 400 )
+scale = Vector2( 4, 4 )
+z_index = 1001
+texture = ExtResource( 21 )
+vframes = 2
+script = ExtResource( 13 )
+
+[node name="bt_hot" type="Sprite" parent="Difficulty"]
+position = Vector2( 775, 400 )
+scale = Vector2( 4, 4 )
+z_index = 1001
+texture = ExtResource( 20 )
+vframes = 2
+script = ExtResource( 13 )
+
+[node name="bt_back2" type="Sprite" parent="Difficulty"]
+position = Vector2( 512, 505.351 )
+scale = Vector2( 4, 4 )
+z_index = 1001
+texture = ExtResource( 14 )
+vframes = 2
+script = ExtResource( 13 )
+show_node_path = "../../Buttons"
