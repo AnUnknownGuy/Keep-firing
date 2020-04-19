@@ -11,27 +11,42 @@ var wait_time: float
 var angle: float
 var path
 var is_dead = false
+var timer_falling: float = 0.5
+var time_to_fall: float = 0.5
 var goal
+var goal_random
 var goal_building
 
-func rand_location():
+func rand_direction() -> Vector2:
 	randomize()
-	walk_time = randf() * 2.5 + 0.5
-	angle = randf() * 2 * PI
+	var temp_angle = randf() * 2 * PI
+	return Vector2(cos(temp_angle), sin(temp_angle))
 
-func find_valid_location():
-	rand_location()
-	while collision():
-		rand_location()
+func find_random_location():
+	var ran_direction = rand_direction()
+	
+	if collision_with(ran_direction):
+		find_random_location()
+	else:
+		goal_random = position + ran_direction
 
-func target_pos():
-	return Vector2(sin(angle), cos(angle)) * walk_time * speed
+
+func next_movement():
+	randomize()
+	if randf() < -1 or goal_building == null:
+		print("pas bon L43")
+		find_random_location()
+		angle = goal_random.angle_to_point(position)
+	else:
+		get_next_goal()
+		angle = goal.angle_to_point(position)
+
 
 const STEPS = 5
 
-func collision():
+func collision_with(direction: Vector2):
 	for i in range(1, STEPS + 1):
-		if not nav.is_in_nav(position + target_pos() * i/STEPS):
+		if not nav.is_in_nav(position + (direction * i/STEPS)):
 			return true
 	return false
 
@@ -43,8 +58,7 @@ func _ready():
 	
 	nav = $"../../Navigation2D"
 	
-	speed = rand_range(2, 4)
-	find_valid_location()
+	speed = rand_range(20, 40)
 	wait_time = 0
 	
 	time_remaining = time_alive_on_fire
@@ -52,14 +66,16 @@ func _ready():
 
 
 func inc_state():
-	print("HHAAAAAA")
 	state += 1
+	$Fire.emitting = true
 	if (state == 1):
-		print("DEAD")
+		speed = 20
+	if (state == 2):
 		dead()
 	if (state >= nb_state):
-		print("TERMINATED")
 		terminated()
+		
+	$Fire.set_state(state, nb_state)
 
 func dead() -> void:
 	is_dead = true
@@ -67,33 +83,60 @@ func dead() -> void:
 
 
 func get_next_goal():
-	goal = path[0]
-	path.remove(0)
+	if on_goal():
+		path.remove(0)
+		if path == []:
+			goal_building.add_human(self)
+			queue_free()
+		else:
+			goal = path[0]
+
+func on_goal():
+	return stepify(goal.angle_to_point(position), 0.01) != stepify(angle, 0.01)
 
 func set_goal(b):
 	goal_building = b
-	path = nav.get_actual_path(position, b.exit_pos())
-	path.remove(0)
-	get_next_goal()
-	find_valid_location()
+	if b != null:
+		path = nav.get_actual_path(position, b.exit_pos())
+		path.remove(0)
+		goal = path[0]
+		angle = goal.angle_to_point(position)
+	else:
+		pass
 
 func _process(delta):
-	if wait_time > 0:
-		wait_time -= delta
-		
-		if wait_time < 0:
-			find_valid_location()
+	if not is_dead:
+		if wait_time >= 0:
+			wait_time -= delta
+			
+			if wait_time < 0:
+				next_movement()
+				
+				
+		else:
+			walk_time -= delta
+
+			position += Vector2(cos(angle), sin(angle)) * speed * delta 
+			#print("position :", position, " goal :", goal, " angle :", angle)
+			
+			if walk_time < 0:
+				if not on_fire:
+					wait_time = 0
+				else:
+					wait_time = 0
+			
+			if path != null:
+				var shift_path = []
+				for p in path:
+					shift_path.append(p - position)
+				$Line2D.points = shift_path
+		set_z()
 	else:
-		walk_time -= delta
-		
-		position += Vector2(sin(angle), cos(angle)) * speed * delta
-		
-		if walk_time < 0:
-			wait_time = randf() * 2.5 + 0.5
-		
-		if path != null:
-			var shift_path = []
-			for p in path:
-				shift_path.append(p - position)
-			$Line2D.points = shift_path
-	set_z()
+		if timer_falling >  0:
+			timer_falling -= delta
+			if timer_falling < 0:
+				timer_falling = 0
+			var rot = pow(sin(((time_to_fall - timer_falling) / time_to_fall) * PI/2),20)
+			rotation_degrees = -90 * rot
+			$Fire.process_material.direction.x = rot
+			$Fire.process_material.direction.y = -1 + rot

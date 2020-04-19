@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/Fire.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Tiny_Fire.gd" type="Script" id=1]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.800781, 0.062561, 0.062561, 1, 0.882353, 0.45098, 0, 1 )
@@ -10,11 +10,11 @@ gradient = SubResource( 1 )
 
 [sub_resource type="ParticlesMaterial" id=3]
 lifetime_randomness = 1.0
-emission_shape = 1
-emission_sphere_radius = 18.0
+emission_shape = 2
+emission_box_extents = Vector3( 3, 6, 1 )
 flag_disable_z = true
 direction = Vector3( 0, -1, 0 )
-spread = 10.0
+spread = 1.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 34.48
 initial_velocity_random = 0.22
@@ -26,7 +26,7 @@ color_ramp = SubResource( 2 )
 hue_variation = 0.08
 hue_variation_random = 0.45
 
-[node name="Fire" type="Particles2D"]
+[node name="Tiny_Fire" type="Particles2D"]
 emitting = false
 lifetime = 2.0
 process_material = SubResource( 3 )
