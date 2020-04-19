@@ -10,6 +10,7 @@ var walk_time: float
 var wait_time: float
 var angle: float
 var path
+var is_dead = false
 var goal
 var goal_building
 
@@ -42,9 +43,28 @@ func _ready():
 	
 	nav = $"../../Navigation2D"
 	
-	speed = rand_range(10, 20)
+	speed = rand_range(2, 4)
 	find_valid_location()
 	wait_time = 0
+	
+	time_remaining = time_alive_on_fire
+	nb_state = 3
+
+
+func inc_state():
+	print("HHAAAAAA")
+	state += 1
+	if (state == 1):
+		print("DEAD")
+		dead()
+	if (state >= nb_state):
+		print("TERMINATED")
+		terminated()
+
+func dead() -> void:
+	is_dead = true
+	pass
+
 
 func get_next_goal():
 	goal = path[0]

@@ -19,7 +19,6 @@ func set_color(state: int, states: int) -> void:
 		var color = Color(225.0/255,115.0/255,0,1)
 		color = color.darkened(float(state)/states)
 		process_material.color_ramp.gradient.colors[1] = color
-		print("darkened")
 	else:
 		process_material.color_ramp.gradient.colors[0] = Color(0,0,0,0.3)
 		process_material.color_ramp.gradient.colors[1] = Color(0,0,0,0.3)
