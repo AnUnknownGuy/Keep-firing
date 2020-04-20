@@ -27,7 +27,7 @@ func find_random_location(angle: float, variation: float) -> float:
 	var direction = ran_direction * walk_time * speed
 	
 	if collision_with(direction):
-		return find_random_location(angle, variation)
+		return find_random_location(angle, 1)
 	else:
 		return temp_angle + angle
 
