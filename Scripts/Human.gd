@@ -60,7 +60,8 @@ func _ready():
 	
 	nav = $"../../Navigation2D"
 	
-	speed = rand_range(20, 40)
+	randomize()
+	speed = rand_range(speed, speed*2)
 	wait_time = 0
 	
 	time_remaining = time_alive_on_fire
@@ -115,6 +116,7 @@ func on_goal():
 
 func when_on_goal():
 	goal_building.add_human(self)
+	entities.remove(self)
 	queue_free()
 
 func set_goal(b):
@@ -128,9 +130,14 @@ func set_goal(b):
 				when_on_goal()
 				
 		path = nav.get_actual_path(position, b.exit_pos())
-		path.remove(0)
-		goal = path[0]
-		angle = goal.angle_to_point(position)
+		if (path.size() != 0):
+			path.remove(0)
+			goal = path[0]
+			angle = goal.angle_to_point(position)
+		else:
+			goal_building = null
+			angle = find_random_location(angle, 0.5, 150)
+			
 	else:
 		pass
 

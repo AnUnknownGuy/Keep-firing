@@ -1,5 +1,7 @@
 extends Human
 
+var cooling_power = 0
+
 func _ready():
 	$Water.process_material = $Water.process_material.duplicate(true)
 	speed = rand_range(35, 45)
@@ -18,4 +20,8 @@ func when_on_goal():
 
 func reset():
 	stop_moving = false
+	$Water.emitting = false
+
+func dead():
+	.dead()
 	$Water.emitting = false

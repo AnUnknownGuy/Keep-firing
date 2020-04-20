@@ -64,7 +64,6 @@ func set_z():
 
 func add_heat(heat: float):
 	
-	#print(grid_pos(), " : +", heat)
 	if heat > 0:
 		added_heat += heat
 	else:
@@ -72,8 +71,6 @@ func add_heat(heat: float):
 
 func set_new_heat():
 	if not burned:
-		if name == "Grass7":
-			print("heat :", current_heat, " added :", added_heat, " cooling :", cooling)
 		if on_fire && can_be_on_fire:
 			time_remaining -= 1
 			if time_remaining < 0:
@@ -98,8 +95,12 @@ func set_new_heat():
 				modulate = Color(1, 1, 1, 1)
 				if (not on_fire):
 					set_on_fire()
+		
 		added_heat = 0
-		cooling = 0
+		if not on_fire:
+			cooling = 10
+		else:
+			cooling = 0
 
 func set_on_fire():
 	if can_be_on_fire:
@@ -134,7 +135,6 @@ func terminated():
 		can_be_on_fire = false
 		burned = false
 		current_heat = 0
-		print("terminated")
 
 func transfer_heat():
 	

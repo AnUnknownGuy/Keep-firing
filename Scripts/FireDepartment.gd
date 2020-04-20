@@ -6,6 +6,7 @@ onready var fireman_scene = preload("res://Scenes/Fireman.tscn")
 
 var goal
 var firemen = []
+export var cooling_power = 0
 
 func set_goal():
 	goal = get_parent().get_random_building_on_fire()
@@ -17,6 +18,7 @@ func _process(delta):
 	if not has_spawned and get_parent().has_building_on_fire():
 		for i in range(8):
 			var fireman = fireman_scene.instance()
+			fireman.cooling_power = cooling_power
 			fireman.position = exit_pos()
 			entities.add_child(fireman)
 			entities.declare(fireman)

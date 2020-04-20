@@ -17,6 +17,9 @@ func get_random_building(ignore = null):
 	else:
 		return choices[int(floor(randf() * choices.size()))]
 
+func remove(building: Building):
+	buildings_dictionnary.erase(building.grid_pos())
+
 func get_random_building_on_fire():
 	var choices = []
 	for b in buildings_dictionnary.values():
@@ -37,8 +40,10 @@ func declare(building: Building):
 	for x in range(0, building.width):
 		for y in range(0, building.height):
 			buildings_dictionnary[building.grid_pos() + Vector2(x, y)] = building
-		
 
+func has_building_at(pos: Vector2) -> bool:
+	return get_building_at(pos) != null
+	
 func get_building_at(pos: Vector2) -> Building:
 	return buildings_dictionnary.get(pos)
 

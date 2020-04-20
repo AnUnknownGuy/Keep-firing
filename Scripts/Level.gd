@@ -78,7 +78,7 @@ func _input(event):
 			get_tree().paused = not get_tree().paused
 
 func _ready():
-	VisualServer.set_default_clear_color(Color(0.824,0.824,0.824,1.0))
+	VisualServer.set_default_clear_color(Color(0.654,0.654,0.654,1.0))
 	highlight()
 	
 	Input.set_custom_mouse_cursor(cursor_fire, Input.CURSOR_ARROW, Vector2(3, 6))
@@ -100,6 +100,10 @@ func _process(delta):
 
 		for e in entities:
 			e.transfer_heat()
+			if "stop_moving" in e:
+				if e.stop_moving:
+					if e.goal_building != null:
+						e.goal_building.add_heat(-e.cooling_power)
 		
 		for p in props:
 			p.transfer_heat()

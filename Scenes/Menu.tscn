@@ -530,6 +530,7 @@ z_as_relative = false
 texture = ExtResource( 11 )
 vframes = 2
 script = ExtResource( 13 )
+show_scene_path = "res://Scenes/Level_Editor.tscn"
 
 [node name="bt_play" type="Sprite" parent="Buttons"]
 position = Vector2( 512, 400 )

@@ -16,9 +16,10 @@ color = Color( 0.396078, 0.658824, 0.756863, 0.784314 )
 
 [node name="Fireman" type="Node2D"]
 script = ExtResource( 1 )
-max_heat_transmitted = 1
-max_heat_resist = 60.0
+max_heat_transmitted = 30.0
+max_heat_resist = 1000.0
 time_alive_on_fire = 15
+speed = 40
 
 [node name="Parts" type="Node2D" parent="."]
 
