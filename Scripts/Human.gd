@@ -20,9 +20,7 @@ var goal_building
 
 func find_random_location(angle: float, variation: float, times: int) -> float:
 	randomize()
-	walk_time = randf() * 2 + 1
-	if times <= 0:
-		pass
+	walk_time = randf() * 2.5 + 0.5
 	
 	var temp_angle = (randf() - 0.5) * variation
 	
@@ -30,7 +28,7 @@ func find_random_location(angle: float, variation: float, times: int) -> float:
 	
 	var direction = ran_direction * walk_time * speed
 	
-	if collision_with(direction):
+	if collision_with(direction) && times > 0:
 		return find_random_location(angle, variation+0.0, times-1)
 	else:
 		return temp_angle + angle
@@ -38,12 +36,12 @@ func find_random_location(angle: float, variation: float, times: int) -> float:
 func next_movement():
 	set_goal(goal_building)
 	if randf() < -1 or goal_building == null:
-		angle = find_random_location(0, 2 * PI, 1000)
+		angle = find_random_location(0, 2 * PI, 150)
 	else:
 		get_next_goal()
 		angle = goal.angle_to_point(position)
 		if (path.size() > 1):
-			angle = find_random_location(angle, 0, 1000)
+			angle = find_random_location(angle, 0.5, 150)
 		else:
 			randomize()
 			walk_time =  position.distance_to(goal) / speed
@@ -106,7 +104,8 @@ func set_goal(b):
 	goal_building = b
 	
 	if b != null:
-		if b.grid_pos().floor() == grid_pos().floor():
+		var exit_pos = b.exit_pos()
+		if stepify(position.x, 1) == stepify(exit_pos.x, 1) and stepify(position.y, 1) == stepify(exit_pos.y, 1):
 			path.remove(0)
 			if path == []:
 				when_on_goal()

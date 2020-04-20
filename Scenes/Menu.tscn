@@ -358,7 +358,7 @@ max_people_inside = 10
 
 [node name="Building3" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 834, 252 )
-max_people_inside = 10
+max_people_inside = 50
 
 [node name="Building6" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 702, 324 )
@@ -370,7 +370,7 @@ max_people_inside = 10
 
 [node name="Building8" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 78, 324 )
-max_people_inside = 10
+max_people_inside = 50
 
 [node name="Building9" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 204, 360 )
@@ -378,11 +378,11 @@ max_people_inside = 10
 
 [node name="Building13" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 102, 468 )
-max_people_inside = 10
+max_people_inside = 50
 
 [node name="Building15" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 534, 468 )
-max_people_inside = 10
+max_people_inside = 50
 
 [node name="Building16" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 696, 432 )
@@ -390,7 +390,7 @@ max_people_inside = 10
 
 [node name="Building17" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 774, 468 )
-max_people_inside = 10
+max_people_inside = 50
 
 [node name="Building12" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 216, 432 )
@@ -406,9 +406,11 @@ max_people_inside = 10
 
 [node name="Hospital" parent="Navigation2D/Buildings" instance=ExtResource( 26 )]
 position = Vector2( 246, 468 )
+max_people_inside = 50
 
 [node name="GasStation" parent="Navigation2D/Buildings" instance=ExtResource( 27 )]
 position = Vector2( 828, 360 )
+max_people_inside = 20
 
 [node name="FireDepartment" parent="Navigation2D/Buildings" instance=ExtResource( 25 )]
 position = Vector2( 402, 252 )

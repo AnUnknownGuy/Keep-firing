@@ -15,7 +15,7 @@ func rand_pos():
 	return Vector2(rand_range(0, 1024), rand_range(0, 600))
 
 func _ready():
-	for i in range(150):
+	for i in range(50):
 		var pos = rand_pos()
 		while not nav.is_in_nav(pos):
 			pos = rand_pos()

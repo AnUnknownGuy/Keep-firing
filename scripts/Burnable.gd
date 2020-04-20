@@ -15,6 +15,7 @@ export var can_be_on_fire: bool = true
 
 export var current_heat: float = 0
 var added_heat: int = 0
+var cooling: int = 0
 export var on_fire = false
 
 var state: int = 0
@@ -29,7 +30,7 @@ func _ready():
 	if has_node("Sprite"):
 		nb_state = $Sprite.vframes * $Sprite.hframes -1
 	if nb_state < 1: nb_state = 2
-	if on_fire: inc_state()
+	if on_fire: set_on_fire()
 
 func post_init():
 	buildings = owner.get_node("Navigation2D/Buildings")
@@ -62,7 +63,10 @@ func set_z():
 
 func add_heat(heat: float):
 	
-	added_heat += heat
+	if heat > 0:
+		added_heat += heat
+	else:
+		cooling += heat
 
 func set_new_heat():
 	
@@ -71,9 +75,17 @@ func set_new_heat():
 		if time_remaining < 0:
 			time_remaining = time_alive_on_fire
 			inc_state()
+		if cooling < 0:
+			current_heat += cooling
+			if (current_heat < 0):
+				current_heat = 0
+				stop_fire()
 	else:
 		if (can_be_on_fire && added_heat != 0):
 			current_heat += added_heat
+			current_heat += cooling
+			if current_heat < 0:
+				current_heat = 0
 			var c: float = current_heat / max_heat_resist
 			modulate = Color(1, 1 - 0.3 * c, 1 - 0.3 * c, 1)
 			
@@ -81,14 +93,24 @@ func set_new_heat():
 			modulate = Color(1, 1, 1, 1)
 			if (not on_fire):
 				set_on_fire()
-			current_heat = max_heat_resist
-		
-	added_heat = 0
+	if not on_fire:
+		added_heat = -2
+	else:
+		added_heat = 0
 
 func set_on_fire():
 	if can_be_on_fire:
 		on_fire = true
 		inc_state()
+		current_heat = max_heat_resist
+
+
+func stop_fire():
+	on_fire = false
+	$Fire.emitting = false
+	state = 0
+	$Sprite.frame = state
+	
 
 func inc_state():
 	state += 1
