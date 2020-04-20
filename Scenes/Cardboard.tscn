@@ -6,11 +6,8 @@
 
 [node name="Cardboard" type="Node2D"]
 script = ExtResource( 1 )
-max_heat_transmitted = 2
 max_heat_resist = 2.0
 time_alive_on_fire = 5
-current_heat = 2.0
-on_fire = true
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )

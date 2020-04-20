@@ -96,16 +96,13 @@ func _process(delta):
 		burn_timer += burn_timer_max
 		
 		for b in buildings:
-			if b.on_fire:
-				b.transfer_heat()
+			b.transfer_heat()
 
 		for e in entities:
-			if e.on_fire:
-				e.transfer_heat()
+			e.transfer_heat()
 		
 		for p in props:
-			if p.on_fire:
-				p.transfer_heat()
+			p.transfer_heat()
 		
 		for b in buildings:
 			b.set_new_heat()

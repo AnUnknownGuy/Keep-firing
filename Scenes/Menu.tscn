@@ -405,10 +405,11 @@ max_people_inside = 10
 
 [node name="Hospital" parent="Navigation2D/Buildings" instance=ExtResource( 26 )]
 position = Vector2( 246, 468 )
-max_people_inside = 50
+max_heat_transmitted = 3.0
 
 [node name="GasStation" parent="Navigation2D/Buildings" instance=ExtResource( 27 )]
 position = Vector2( 828, 360 )
+max_heat_transmitted = 3.0
 max_people_inside = 20
 
 [node name="FireDepartment" parent="Navigation2D/Buildings" instance=ExtResource( 25 )]

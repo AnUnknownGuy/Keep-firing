@@ -72,7 +72,6 @@ func inc_state():
 	state += 1
 	$Fire.emitting = true
 	if (state == 1):
-		speed *=1.5
 		goal_building = null
 		path = null
 	if (state == 2):
@@ -82,17 +81,34 @@ func inc_state():
 		
 	$Fire.set_state(state, nb_state)
 
+func stop_fire():
+	on_fire = false
+	speed /= 1.5
+	$Fire.emitting = false
+	state = 0
+	
+
 func dead() -> void:
 	is_dead = true
 	pass
-
+	
+func set_on_fire():
+	if can_be_on_fire:
+		speed *= 1.5
+		on_fire = true
+		inc_state()
+		current_heat = max_heat_resist
+		
+		goal_building = null
+		next_movement()
+		
+		
 
 func get_next_goal():
 	if on_goal():
 		path.remove(0)
 		if path == []:
 			goal_building.add_human(self)
-			print("AAAH")
 			queue_free()
 		else:
 			goal = path[0]
