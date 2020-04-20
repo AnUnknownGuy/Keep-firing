@@ -43,7 +43,7 @@ func next_movement():
 		get_next_goal()
 		angle = goal.angle_to_point(position)
 		if (path.size() > 1):
-			angle = find_random_location(angle, 0, 150)
+			angle = find_random_location(angle, 0.5, 150)
 		else:
 			randomize()
 			walk_time =  position.distance_to(goal) / speed
@@ -92,6 +92,7 @@ func get_next_goal():
 		path.remove(0)
 		if path == []:
 			goal_building.add_human(self)
+			print("AAAH")
 			queue_free()
 		else:
 			goal = path[0]
@@ -103,7 +104,8 @@ func set_goal(b):
 	goal_building = b
 	
 	if b != null:
-		if b.grid_pos().floor() == grid_pos().floor():
+		var exit_pos = b.exit_pos()
+		if stepify(position.x, 1) == stepify(exit_pos.x, 1) and stepify(position.y, 1) == stepify(exit_pos.y, 1):
 			path.remove(0)
 			if path == []:
 				goal_building.add_human(self)

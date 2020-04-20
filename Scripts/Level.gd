@@ -54,7 +54,7 @@ func _input(event):
 			var pos = Burnable.s_grid_pos($TilePreview.position)
 			var build = $Navigation2D/Buildings.get_building_at(pos)
 			if build != null and build.can_be_on_fire:
-				build.on_fire = true
+				build.set_on_fire()
 				setting_fire = false
 				get_tree().paused = false
 				$Buttons.show()
