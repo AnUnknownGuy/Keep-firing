@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "Prop",
 "language": "GDScript",
 "path": "res://Scripts/Prop.gd"
+}, {
+"base": "Sprite",
+"class": "_Button",
+"language": "GDScript",
+"path": "res://Scripts/Button.gd"
 } ]
 _global_script_class_icons={
 "Building": "",
 "Burnable": "",
 "Entity": "",
 "Human": "",
-"Prop": ""
+"Prop": "",
+"_Button": ""
 }
 
 [application]

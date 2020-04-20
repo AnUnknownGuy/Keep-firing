@@ -6,6 +6,12 @@
 
 [node name="Hospital" type="Node2D"]
 script = ExtResource( 2 )
+max_heat_transmitted = 4
+max_heat_resist = 200.0
+time_alive_on_fire = 40
+width = 3
+max_people_inside = 50
+door_location = Vector2( 56, 36 )
 
 [node name="Fire" parent="." instance=ExtResource( 3 )]
 position = Vector2( 60, 8 )
