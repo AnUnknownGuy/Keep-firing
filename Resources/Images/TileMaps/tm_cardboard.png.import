@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/forest.png-29a555704e1df71b2380381abedb37ee.stex"
+path="res://.import/tm_cardboard.png-6910c68d3a9927e5f07b6f1fea5b43e2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Images/Sprite/forest.png"
-dest_files=[ "res://.import/forest.png-29a555704e1df71b2380381abedb37ee.stex" ]
+source_file="res://Resources/Images/TileMaps/tm_cardboard.png"
+dest_files=[ "res://.import/tm_cardboard.png-6910c68d3a9927e5f07b6f1fea5b43e2.stex" ]
 
 [params]
 

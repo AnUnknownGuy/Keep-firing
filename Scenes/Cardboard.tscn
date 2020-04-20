@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Prop.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Fire.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Images/TileMaps/tm_cardboard.png" type="Texture" id=3]
+
+[node name="Cardboard" type="Node2D"]
+script = ExtResource( 1 )
+max_heat_transmitted = 2
+max_heat_resist = 2.0
+time_alive_on_fire = 5
+current_heat = 2.0
+on_fire = true
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 3, 3 )
+texture = ExtResource( 3 )
+centered = false
+offset = Vector2( -2, 6 )
+hframes = 3
+
+[node name="Fire" parent="." instance=ExtResource( 2 )]
+position = Vector2( 5, 27 )

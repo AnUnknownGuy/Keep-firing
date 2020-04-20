@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/forest.png-29a555704e1df71b2380381abedb37ee.stex"
+path="res://.import/jerrycan.png-60af858e6f59eba2baf81476c49bb24e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Images/Sprite/forest.png"
-dest_files=[ "res://.import/forest.png-29a555704e1df71b2380381abedb37ee.stex" ]
+source_file="res://Resources/Images/Sprite/jerrycan.png"
+dest_files=[ "res://.import/jerrycan.png-60af858e6f59eba2baf81476c49bb24e.stex" ]
 
 [params]
 

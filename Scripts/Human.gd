@@ -60,8 +60,7 @@ func collision_with(direction: Vector2):
 
 func _ready():
 	$Parts/Face.color = FaceColors[floor(rand_range(0, FaceColors.size()))]
-	var bodycol = BodyColors[floor(rand_range(0, BodyColors.size()))]
-	$Parts/Body.color = bodycol
+	$Parts/Body.color = BodyColors[floor(rand_range(0, BodyColors.size()))]
 	
 	nav = $"../../Navigation2D"
 	

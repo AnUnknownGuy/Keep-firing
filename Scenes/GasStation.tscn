@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Resources/Images/TileMaps/tm_gas_station.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Fire.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Building.gd" type="Script" id=3]
+
+[node name="GasStation" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+offset = Vector2( 13.5, 3.5 )
+vframes = 3
+
+[node name="Fire" parent="." instance=ExtResource( 2 )]
+position = Vector2( 40, 11 )

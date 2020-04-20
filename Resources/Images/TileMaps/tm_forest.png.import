@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/forest.png-29a555704e1df71b2380381abedb37ee.stex"
+path="res://.import/tm_forest.png-7dae1120c7f9ed9b9197ef4641cf04ac.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Images/Sprite/forest.png"
-dest_files=[ "res://.import/forest.png-29a555704e1df71b2380381abedb37ee.stex" ]
+source_file="res://Resources/Images/TileMaps/tm_forest.png"
+dest_files=[ "res://.import/tm_forest.png-7dae1120c7f9ed9b9197ef4641cf04ac.stex" ]
 
 [params]
 

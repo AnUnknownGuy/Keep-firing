@@ -1,20 +1,15 @@
 extends Sprite
-
-export(String) var show_node_path = ""
-export(String) var show_scene_path = ""
+class_name _Button
 
 var mouse_pos = Vector2(0, 0)
 var is_in = false
 
+func handle_click():
+	pass
+
 func _input(event):
 	if event is InputEventMouseButton and is_in and get_parent().visible and event.pressed:
-		if len(show_node_path) > 0:
-			get_parent().hide()
-			get_node(show_node_path).show()
-		
-		elif len(show_scene_path) > 0:
-			get_tree().change_scene(show_scene_path)
-		
+		handle_click()
 	elif event is InputEventMouseMotion:
 		mouse_pos = event.position
 		var s = scale * get_rect().size / 2

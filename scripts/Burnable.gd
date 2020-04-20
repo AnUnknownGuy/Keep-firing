@@ -52,7 +52,7 @@ static func pos_from_grid(pos: Vector2):
 	
 	var y = pos.y * 12 * pixel_scale
 	var x = pos.x * 16 * pixel_scale - y / 2
-	return Vector2(x, y).floor()
+	return Vector2(x, y).round()
 
 func set_z():
 	var pos = grid_pos()

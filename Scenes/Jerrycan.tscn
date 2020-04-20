@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Fire.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/Images/TileMaps/tm_jerrycan.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Prop.gd" type="Script" id=3]
+
+[node name="Jerrycan" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( -2, -2 )
+vframes = 3
+
+[node name="Fire" parent="." instance=ExtResource( 1 )]
+position = Vector2( 15, 15 )
