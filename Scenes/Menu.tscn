@@ -352,55 +352,42 @@ script = ExtResource( 9 )
 
 [node name="Building1" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 258, 252 )
-max_people_inside = 10
 
 [node name="Building3" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 834, 252 )
-max_people_inside = 10
 
 [node name="Building6" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 702, 324 )
-max_people_inside = 10
 
 [node name="Building7" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 318, 324 )
-max_people_inside = 10
 
 [node name="Building8" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 78, 324 )
-max_people_inside = 10
 
 [node name="Building9" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 204, 360 )
-max_people_inside = 10
 
 [node name="Building13" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 102, 468 )
-max_people_inside = 10
 
 [node name="Building15" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 534, 468 )
-max_people_inside = 10
 
 [node name="Building16" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 696, 432 )
-max_people_inside = 10
 
 [node name="Building17" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 774, 468 )
-max_people_inside = 10
 
 [node name="Building12" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 216, 432 )
-max_people_inside = 10
 
 [node name="Building10" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 444, 360 )
-max_people_inside = 10
 
 [node name="Building11" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 492, 360 )
-max_people_inside = 10
 
 [node name="Hospital" parent="Navigation2D/Buildings" instance=ExtResource( 26 )]
 position = Vector2( 246, 468 )
@@ -460,7 +447,6 @@ position = Vector2( 1002, 396 )
 position = Vector2( 1020, 360 )
 
 [node name="Shadow" type="Sprite" parent="."]
-visible = false
 self_modulate = Color( 0, 0, 0, 0.392157 )
 position = Vector2( 525, 288 )
 scale = Vector2( 6, 6 )
@@ -562,6 +548,7 @@ z_index = 1001
 texture = ExtResource( 21 )
 vframes = 2
 script = ExtResource( 13 )
+show_scene_path = "res://Scenes/Level.tscn"
 
 [node name="bt_hot" type="Sprite" parent="Difficulty"]
 position = Vector2( 775, 400 )

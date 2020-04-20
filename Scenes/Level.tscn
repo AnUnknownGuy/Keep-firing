@@ -291,15 +291,16 @@ __meta__ = {
 }
 
 [node name="Buttons" type="Node2D" parent="."]
+visible = false
 z_index = 1001
 
 [node name="ItemButton" parent="Buttons" instance=ExtResource( 16 )]
-position = Vector2( 69, 540 )
+position = Vector2( 60, 540 )
 icon_path = "res://Resources/Images/Sprite/cardboard.png"
 scene_path = "res://Scenes/Cardboard.tscn"
 
 [node name="ItemButton2" parent="Buttons" instance=ExtResource( 16 )]
-position = Vector2( 150, 540 )
+position = Vector2( 141, 540 )
 icon_path = "res://Resources/Images/Sprite/jerrycan.png"
 scene_path = "res://Scenes/Jerrycan.tscn"
 

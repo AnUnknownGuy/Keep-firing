@@ -43,7 +43,6 @@ func next_movement():
 		angle = goal.angle_to_point(position)
 		angle = find_random_location(angle, 0)
 
-
 const STEPS = 5
 
 func collision_with(direction: Vector2):
