@@ -59,7 +59,7 @@ func set_z():
 	var pos = grid_pos()
 	var fx = floor(pos.x)
 	var fy = floor(pos.y)
-	z_index = fx + 0.8 * fy + 0.2 * (pos.y)
+	z_index = fx + 9.8 * fy + 0.2 * (pos.y)
 
 func add_heat(heat: float):
 	

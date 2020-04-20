@@ -11,7 +11,6 @@ func set_type(t: int):
 	type = t
 	$Sprite.frame = t
 
-
 func inc_state():
 	state += 1
 	
