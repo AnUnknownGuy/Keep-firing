@@ -29,10 +29,12 @@ func highlight():
 	$TilePreview.vframes = 1
 
 var ignore_click = false
+var setting_fire = false
 var placable = false
 
 onready var cursor = preload("res://Resources/Images/Sprite/cursor.png")
 onready var cursor_click = preload("res://Resources/Images/Sprite/cursor_click.png")
+onready var cursor_fire = preload("res://Resources/Images/Sprite/cursor_fire.png")
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -48,7 +50,17 @@ func _input(event):
 				placable = false
 	
 	elif event is InputEventMouseButton and not event.is_echo():
-		Input.set_custom_mouse_cursor(cursor_click if event.pressed else cursor)
+		if setting_fire and event.pressed:
+			var pos = Burnable.s_grid_pos($TilePreview.position)
+			var build = $Navigation2D/Buildings.get_building_at(pos)
+			if build != null and build.can_be_on_fire:
+				build.on_fire = true
+				setting_fire = false
+				get_tree().paused = false
+				$Buttons.show()
+		
+		if not setting_fire:
+			Input.set_custom_mouse_cursor(cursor_click if event.pressed else cursor)
 		
 		if event.pressed and not ignore_click and selected_scene != null and placable:
 			var placed = selected_scene.instance()
@@ -68,6 +80,10 @@ func _input(event):
 func _ready():
 	VisualServer.set_default_clear_color(Color(0.824,0.824,0.824,1.0))
 	highlight()
+	
+	Input.set_custom_mouse_cursor(cursor_fire, Input.CURSOR_ARROW, Vector2(3, 6))
+	get_tree().paused = true
+	setting_fire = true
 
 func _process(delta):
 	entities = $Entities.get_children()

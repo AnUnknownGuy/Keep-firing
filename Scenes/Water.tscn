@@ -28,10 +28,10 @@ scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 offset = Vector2( 5.5, 6 )
 hframes = 4
-frame = 1
 region_rect = Rect2( 55.7057, 24.529, 19.3372, 19.3372 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
 autoplay = "water"
 method_call_mode = 1
 anims/water = SubResource( 1 )
