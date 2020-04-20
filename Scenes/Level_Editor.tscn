@@ -320,20 +320,55 @@ __meta__ = {
 "_edit_horizontal_guides_": [  ],
 "_edit_vertical_guides_": [  ]
 }
+nb_cardboard = 5
+nb_jerrycan = 3
 
 [node name="Buttons" type="Node2D" parent="."]
-visible = false
 z_index = 1001
 
-[node name="ItemButton" parent="Buttons" instance=ExtResource( 16 )]
+[node name="CardboardButton" parent="Buttons" instance=ExtResource( 16 )]
 position = Vector2( 60, 540 )
-icon_path = "res://Resources/Images/Sprite/cardboard.png"
+icon_path = "res://Resources/Images/Sprite/ic_cardboard.png"
 scene_path = "res://Scenes/Cardboard.tscn"
+tile_type = 2
 
-[node name="ItemButton2" parent="Buttons" instance=ExtResource( 16 )]
+[node name="JerrycanButton" parent="Buttons" instance=ExtResource( 16 )]
 position = Vector2( 141, 540 )
-icon_path = "res://Resources/Images/Sprite/jerrycan.png"
+icon_path = "res://Resources/Images/Sprite/ic_jerrycan.png"
 scene_path = "res://Scenes/Jerrycan.tscn"
+tile_type = 1
+
+[node name="GrassButton" parent="Buttons" instance=ExtResource( 16 )]
+position = Vector2( 285, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_grass.png"
+scene_path = "res://Scenes/Grass.tscn"
+
+[node name="ForestButton" parent="Buttons" instance=ExtResource( 16 )]
+position = Vector2( 367, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_forest.png"
+scene_path = "res://Scenes/Forest.tscn"
+
+[node name="HouseButton" parent="Buttons" instance=ExtResource( 16 )]
+position = Vector2( 447, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_house.png"
+scene_path = "res://Scenes/House.tscn"
+
+[node name="BuildingButton" parent="Buttons" instance=ExtResource( 16 )]
+position = Vector2( 529, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_building1.png"
+scene_path = "res://Scenes/Building1.tscn"
+
+[node name="GasStationButton" parent="Buttons" instance=ExtResource( 16 )]
+position = Vector2( 610, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_gas_station.png"
+scene_path = "res://Scenes/GasStation.tscn"
+tile_width = 2
+
+[node name="HosiptalButton" parent="Buttons" instance=ExtResource( 16 )]
+position = Vector2( 691, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_hospital.png"
+scene_path = "res://Scenes/Hospital.tscn"
+tile_width = 3
 
 [node name="TilePreview" type="Sprite" parent="."]
 pause_mode = 1
