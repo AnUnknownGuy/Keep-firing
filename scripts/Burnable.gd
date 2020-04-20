@@ -21,6 +21,7 @@ var burned: bool = false
 
 var state: int = 0
 var nb_state: int = 2
+var removable: int = false
 
 export var height = 1
 export var width = 1
