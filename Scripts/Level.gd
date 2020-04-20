@@ -31,6 +31,9 @@ func highlight():
 var ignore_click = false
 var placable = false
 
+onready var cursor = preload("res://Resources/Images/Sprite/cursor.png")
+onready var cursor_click = preload("res://Resources/Images/Sprite/cursor_click.png")
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		var pos = Burnable.s_grid_pos(event.position)
@@ -44,8 +47,10 @@ func _input(event):
 				$TilePreview.self_modulate = Color(1, 0.211, 0.211, 0.784)
 				placable = false
 	
-	elif event is InputEventMouseButton and event.pressed and not ignore_click and selected_scene != null:
-		if placable:
+	elif event is InputEventMouseButton and not event.is_echo():
+		Input.set_custom_mouse_cursor(cursor_click if event.pressed else cursor)
+		
+		if event.pressed and not ignore_click and selected_scene != null and placable:
 			var placed = selected_scene.instance()
 			placed.position = $TilePreview.position
 			$Props.add_child(placed)
