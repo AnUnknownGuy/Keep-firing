@@ -339,6 +339,7 @@ position = Vector2( 402, 252 )
 
 [node name="Building3" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 834, 252 )
+max_people_inside = 10
 
 [node name="Building4" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 846, 324 )
@@ -360,6 +361,7 @@ position = Vector2( 204, 360 )
 
 [node name="Building13" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 102, 468 )
+max_people_inside = 10
 
 [node name="Building14" parent="Navigation2D/Buildings" instance=ExtResource( 8 )]
 position = Vector2( 246, 468 )

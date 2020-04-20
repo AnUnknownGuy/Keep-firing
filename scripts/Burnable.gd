@@ -20,11 +20,16 @@ export var on_fire = false
 var state: int = 0
 var nb_state: int = 2
 
+export var height = 1
+export var width = 1
+
+
 func _ready():
 	time_remaining = time_alive_on_fire
 	if has_node("Sprite"):
 		nb_state = $Sprite.vframes * $Sprite.hframes -1
-	if (nb_state < 1): nb_state = 2
+	if nb_state < 1: nb_state = 2
+	if on_fire: inc_state()
 
 func post_init():
 	buildings = owner.get_node("Navigation2D/Buildings")
@@ -110,18 +115,29 @@ func transfer_heat():
 	if (heat_to_transfer >= max_heat_transmitted):
 		heat_to_transfer = max_heat_transmitted
 	
-	for x in range(-1, 2):
-		for y in range(-1, 2):
-			if  x==0 or y==0:
-				var building_next_to = buildings.get_building_at(grid_pos() + Vector2(x,y))
-				if building_next_to != null:
-					building_next_to.add_heat(heat_to_transfer)
-				
-				var prop_next_to = props.get_building_at(grid_pos() + Vector2(x,y))
-				if prop_next_to != null:
-					prop_next_to.add_heat(heat_to_transfer)
-				
-				var entities_next_to = entities.get_entities_at(grid_pos() + Vector2(x,y))
-				if entities_next_to != null:
-					for entity in entities_next_to:
-						entity.add_heat(heat_to_transfer)
+	for x in range(0, width):
+		intern_transfer(Vector2(x, -1), heat_to_transfer)
+		intern_transfer(Vector2(x, height), heat_to_transfer)
+		pass
+	
+	for y in range(0, height):
+		intern_transfer(Vector2(-1, -y), heat_to_transfer)
+		intern_transfer(Vector2(width, y), heat_to_transfer)
+		pass
+		
+	intern_transfer(Vector2(0, 0), heat_to_transfer)
+	
+
+func intern_transfer(vec: Vector2, heat_to_transfer: int):
+	var building_next_to = buildings.get_building_at(grid_pos() + vec)
+	if building_next_to != null:
+		building_next_to.add_heat(heat_to_transfer)
+	
+	var prop_next_to = props.get_building_at(grid_pos() + vec)
+	if prop_next_to != null:
+		prop_next_to.add_heat(heat_to_transfer)
+	
+	var entities_next_to = entities.get_entities_at(grid_pos() + vec)
+	if entities_next_to != null:
+		for entity in entities_next_to:
+			entity.add_heat(heat_to_transfer)

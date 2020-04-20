@@ -9,6 +9,7 @@ script = ExtResource( 1 )
 max_heat_transmitted = 10
 max_heat_resist = 100.0
 time_alive_on_fire = 6
+door_location = Vector2( 21, 36 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )

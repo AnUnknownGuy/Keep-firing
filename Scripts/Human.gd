@@ -17,8 +17,13 @@ var goal
 var goal_random
 var goal_building
 
-func find_random_location(angle: float, variation: float) -> float:
+func find_random_location(angle: float, variation: float, times: int) -> float:
+
 	randomize()
+	walk_time = randf() * 2.5 + 0.5
+	if times <= 0:
+		pass
+	
 	
 	var temp_angle = (randf() - 0.5) * variation
 	
@@ -27,28 +32,29 @@ func find_random_location(angle: float, variation: float) -> float:
 	var direction = ran_direction * walk_time * speed
 	
 	if collision_with(direction):
-		return find_random_location(angle, 1)
+		return find_random_location(angle, variation+0.0, times-1)
 	else:
 		return temp_angle + angle
 
 
 func next_movement():
-	randomize()
-	walk_time = randf() * 2.5 + 0.5
-	
+	set_goal(goal_building)
 	if randf() < -1 or goal_building == null:
-		angle = find_random_location(0, 2 * PI)
+		angle = find_random_location(0, 2 * PI, 1000)
 	else:
 		get_next_goal()
 		angle = goal.angle_to_point(position)
-		angle = find_random_location(angle, 0)
+		if (path.size() > 1):
+			angle = find_random_location(angle, 0, 1000)
+		else:
+			randomize()
+			walk_time =  position.distance_to(goal) / speed
 
-
-const STEPS = 5
+const STEPS = 3
 
 func collision_with(direction: Vector2):
 	for i in range(1, STEPS + 1):
-		if not nav.is_in_nav(position + (direction * i/STEPS)):
+		if not nav.is_in_nav(position + (direction * float(i)/STEPS)):
 			return true
 	return false
 
@@ -69,7 +75,9 @@ func inc_state():
 	state += 1
 	$Fire.emitting = true
 	if (state == 1):
-		speed = 20
+		speed *=1.5
+		goal_building = null
+		path = null
 	if (state == 2):
 		dead()
 	if (state >= nb_state):
@@ -96,7 +104,14 @@ func on_goal():
 
 func set_goal(b):
 	goal_building = b
+	
 	if b != null:
+		if b.grid_pos().floor() == grid_pos().floor():
+			path.remove(0)
+			if path == []:
+				goal_building.add_human(self)
+				queue_free()
+				
 		path = nav.get_actual_path(position, b.exit_pos())
 		path.remove(0)
 		goal = path[0]
@@ -114,9 +129,14 @@ func _process(delta):
 				
 				
 		else:
-			walk_time -= delta
-
-			position += Vector2(cos(angle), sin(angle)) * speed * delta 
+			walk_time -= delta 
+			
+			var old_pos = position 
+			position = position + Vector2(cos(angle), sin(angle)) * speed * delta 
+			
+			if grid_pos() != grid_pos(old_pos):
+				entities.change_pos_of(self, grid_pos(old_pos))
+			
 			
 			if walk_time < 0:
 				if on_fire:

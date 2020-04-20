@@ -1,5 +1,15 @@
 extends Particles2D
 
+
+var mat = process_material
+
+func _ready():
+	
+	process_material = mat.duplicate()
+	process_material.color_ramp = mat.color_ramp.duplicate()
+	process_material.color_ramp.gradient = mat.color_ramp.gradient.duplicate()
+
+
 func set_color(state: int, states: int) -> void:
 	if (state != states):
 		var color = Color(225.0/255,115.0/255,0,1)

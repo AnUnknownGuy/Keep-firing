@@ -16,6 +16,9 @@ func _ready():
 	VisualServer.set_default_clear_color(Color(0.824,0.824,0.824,1.0))
 
 func _process(delta):
+	entities = $Entities.get_children()
+	props = $Props.get_children()
+	buildings = $"Navigation2D/Buildings".get_children()
 	burn_timer -= delta
 	if burn_timer < 0:
 		burn_timer += burn_timer_max
