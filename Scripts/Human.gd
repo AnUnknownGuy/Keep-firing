@@ -11,6 +11,7 @@ var wait_time: float
 var angle: float
 var path
 var is_dead = false
+var stop_moving = false
 var timer_falling: float = 0.5
 var time_to_fall: float = 0.5
 var goal
@@ -18,10 +19,8 @@ var goal_random
 var goal_building
 
 func find_random_location(angle: float, variation: float, times: int) -> float:
-
 	randomize()
 	walk_time = randf() * 2.5 + 0.5
-	
 	
 	var temp_angle = (randf() - 0.5) * variation
 	
@@ -33,7 +32,6 @@ func find_random_location(angle: float, variation: float, times: int) -> float:
 		return find_random_location(angle, variation+0.0, times-1)
 	else:
 		return temp_angle + angle
-
 
 func next_movement():
 	set_goal(goal_building)
@@ -108,13 +106,16 @@ func get_next_goal():
 	if on_goal():
 		path.remove(0)
 		if path == []:
-			goal_building.add_human(self)
-			queue_free()
+			when_on_goal()
 		else:
 			goal = path[0]
 
 func on_goal():
 	return stepify(goal.angle_to_point(position), 0.01) != stepify(angle, 0.01)
+
+func when_on_goal():
+	goal_building.add_human(self)
+	queue_free()
 
 func set_goal(b):
 	goal_building = b
@@ -124,8 +125,7 @@ func set_goal(b):
 		if stepify(position.x, 1) == stepify(exit_pos.x, 1) and stepify(position.y, 1) == stepify(exit_pos.y, 1):
 			path.remove(0)
 			if path == []:
-				goal_building.add_human(self)
-				queue_free()
+				when_on_goal()
 				
 		path = nav.get_actual_path(position, b.exit_pos())
 		path.remove(0)
@@ -134,29 +134,33 @@ func set_goal(b):
 	else:
 		pass
 
+func rand_wait_time():
+	return 2.0 * randf()
+
 func _process(delta):
 	if not is_dead:
-		if wait_time >= 0:
-			wait_time -= delta
-			
-			if wait_time < 0:
-				next_movement()
+		if not stop_moving:
+			if wait_time >= 0:
+				wait_time -= delta
 				
-		else:
-			walk_time -= delta 
-			
-			var old_pos = position 
-			position = position + Vector2(cos(angle), sin(angle)) * speed * delta 
-			
-			if grid_pos() != grid_pos(old_pos):
-				entities.change_pos_of(self, grid_pos(old_pos))
-			
-			if walk_time < 0:
-				if on_fire:
-					wait_time = 0
-				else:
-					wait_time = 2.0 * randf()
-		set_z()
+				if wait_time < 0:
+					next_movement()
+					
+			else:
+				walk_time -= delta 
+				
+				var old_pos = position 
+				position = position + Vector2(cos(angle), sin(angle)) * speed * delta 
+				
+				if grid_pos() != grid_pos(old_pos):
+					entities.change_pos_of(self, grid_pos(old_pos))
+				
+				if walk_time < 0:
+					if on_fire:
+						wait_time = 0
+					else:
+						wait_time = rand_wait_time()
+			set_z()
 	else:
 		if timer_falling >  0:
 			timer_falling -= delta

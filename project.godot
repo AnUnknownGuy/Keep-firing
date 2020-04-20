@@ -51,8 +51,12 @@ _global_script_class_icons={
 [application]
 
 config/name="LD_FIRE"
-run/main_scene="res://Scenes/Level.tscn"
+run/main_scene="res://Scenes/Menu.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+mouse_cursor/custom_image="res://Resources/Images/Sprite/cursor.png"
 
 [rendering]
 
