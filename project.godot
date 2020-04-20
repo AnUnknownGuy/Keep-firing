@@ -33,30 +33,20 @@ _global_script_classes=[ {
 "class": "Prop",
 "language": "GDScript",
 "path": "res://Scripts/Prop.gd"
-}, {
-"base": "Sprite",
-"class": "_Button",
-"language": "GDScript",
-"path": "res://Scripts/Button.gd"
 } ]
 _global_script_class_icons={
 "Building": "",
 "Burnable": "",
 "Entity": "",
 "Human": "",
-"Prop": "",
-"_Button": ""
+"Prop": ""
 }
 
 [application]
 
 config/name="LD_FIRE"
-run/main_scene="res://Scenes/Menu.tscn"
+run/main_scene="res://Scenes/Level.tscn"
 config/icon="res://icon.png"
-
-[display]
-
-mouse_cursor/custom_image="res://Resources/Images/Sprite/cursor.png"
 
 [rendering]
 
