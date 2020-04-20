@@ -1,4 +1,4 @@
-extends "res://Scripts/Buildings.gd"
+extends "Buildings.gd"
 
 func has_building_at(pos: Vector2) -> bool:
 	return get_building_at(pos) != null

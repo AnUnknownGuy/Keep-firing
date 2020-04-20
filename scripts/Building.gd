@@ -1,8 +1,8 @@
 extends Burnable
 class_name Building
 
-onready var nav = owner.get_node("Navigation2D")
 onready var human_scene = preload("res://Scenes/Human.tscn")
+var nav
 
 export var max_people_inside: int = 0
 var people_inside = 0
@@ -29,6 +29,10 @@ func grid_pos(pos: Vector2 = position):
 func _ready():
 	people_inside = round(max_people_inside / 2)
 	reset_timer()
+
+func post_init():
+	nav = owner.get_node("Navigation2D")
+	.post_init()
 
 func _process(delta):
 	if people_inside > 0:
