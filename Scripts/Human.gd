@@ -124,7 +124,6 @@ func _process(delta):
 			if wait_time < 0:
 				next_movement()
 				
-				
 		else:
 			walk_time -= delta 
 			
@@ -133,7 +132,6 @@ func _process(delta):
 			
 			if grid_pos() != grid_pos(old_pos):
 				entities.change_pos_of(self, grid_pos(old_pos))
-			
 			
 			if walk_time < 0:
 				if on_fire:

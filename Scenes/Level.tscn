@@ -509,6 +509,9 @@ position = Vector2( 294, 180 )
 [node name="Sprinkler2" parent="Navigation2D/Buildings" instance=ExtResource( 13 )]
 position = Vector2( 210, 252 )
 
+[node name="Forest" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
+position = Vector2( 462, 324 )
+
 [node name="Forest2" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 546, 252 )
 
