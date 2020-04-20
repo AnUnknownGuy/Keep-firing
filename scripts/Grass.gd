@@ -14,8 +14,13 @@ func set_type(t: int):
 
 func inc_state():
 	state += 1
+	
+	$Fire.emitting = true
+	
 	if (state == 1):
 		$Sprite.frame = 4
 	if (state >= nb_state):
 		$Sprite.frame = 5
 		terminated()
+	
+	$Fire.set_state(state, nb_state)

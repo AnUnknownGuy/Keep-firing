@@ -10,15 +10,18 @@ func _ready():
 func get_random_building(ignore = null):
 	var choices = []
 	for b in buildings_dictionnary.values():
-		if b.max_people_inside > 0 and b.grid_pos() != ignore:
+		if b.max_people_inside > 0 and b.grid_pos() != ignore and b.exit_pos() != null:
 			choices.append(b)
 	if (choices.size() == 0):
 		return null
 	else:
-		return choices[floor(randf() * choices.size())]
+		return choices[int(floor(randf() * choices.size()))]
 
 func declare(building: Building):
-	buildings_dictionnary[building.grid_pos()] = building
+	for x in range(0, building.width):
+		for y in range(0, building.height):
+			buildings_dictionnary[building.grid_pos() + Vector2(x, y)] = building
+		
 
 func get_building_at(pos: Vector2) -> Building:
 	return buildings_dictionnary.get(pos)

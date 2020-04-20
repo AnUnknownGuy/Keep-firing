@@ -86,6 +86,9 @@ func _ready():
 	setting_fire = true
 
 func _process(delta):
+	entities = $Entities.get_children()
+	props = $Props.get_children()
+	buildings = $"Navigation2D/Buildings".get_children()
 	ignore_click = false
 	
 	burn_timer -= delta

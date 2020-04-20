@@ -226,11 +226,11 @@ vertices = PoolVector2Array( 0, 12, 6, 0, 22, 0, 16, 12 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
 [sub_resource type="NavigationPolygon" id=50]
-vertices = PoolVector2Array( -3.8147e-06, 12, 6, 0, 22, 0, 16, 12 )
+vertices = PoolVector2Array( 0, 12, 6, 0, 22, 0, 16, 12 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
 [sub_resource type="NavigationPolygon" id=51]
-vertices = PoolVector2Array( -7.62939e-06, 12, 5.99999, 0, 22, 0, 16, 12 )
+vertices = PoolVector2Array( 0, 12, 6, 0, 22, 0, 16, 12 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
 [sub_resource type="TileSet" id=52]
