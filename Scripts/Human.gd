@@ -117,6 +117,9 @@ func set_goal(b):
 	else:
 		pass
 
+func rand_wait_time():
+	return 2.0 * randf()
+
 func _process(delta):
 	if not is_dead:
 		if not stop_moving:
@@ -139,7 +142,7 @@ func _process(delta):
 					if on_fire:
 						wait_time = 0
 					else:
-						wait_time = 2.0 * randf()
+						wait_time = rand_wait_time()
 			set_z()
 	else:
 		if timer_falling >  0:

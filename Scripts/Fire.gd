@@ -6,10 +6,7 @@ onready var sprite = $"../Sprite"
 var mat = process_material
 
 func _ready():
-	
-	process_material = mat.duplicate()
-	process_material.color_ramp = mat.color_ramp.duplicate()
-	process_material.color_ramp.gradient = mat.color_ramp.gradient.duplicate()
+	process_material = mat.duplicate(true)
 	
 	process_material.emission_sphere_radius = (sprite.get_rect().size.length()/2)
 
