@@ -475,7 +475,6 @@ time_alive_on_fire = 3
 can_be_on_fire = false
 current_heat = 1.0
 on_fire = 0
-max_people_inside = 0
 type = 3
 
 [node name="Grass17" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
@@ -510,6 +509,9 @@ position = Vector2( 294, 180 )
 [node name="Sprinkler2" parent="Navigation2D/Buildings" instance=ExtResource( 13 )]
 position = Vector2( 210, 252 )
 
+[node name="Forest" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
+position = Vector2( 462, 324 )
+
 [node name="Forest2" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 546, 252 )
 
@@ -525,9 +527,6 @@ position = Vector2( 510, 324 )
 [node name="Entities" type="Node2D" parent="."]
 pause_mode = 1
 script = ExtResource( 2 )
-
-[node name="Human" parent="Entities" instance=ExtResource( 14 )]
-position = Vector2( 471, 252 )
 
 [node name="Props" type="Node2D" parent="."]
 pause_mode = 1
