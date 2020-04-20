@@ -17,6 +17,12 @@ func get_random_building(ignore = null):
 	else:
 		return choices[int(floor(randf() * choices.size()))]
 
+func is_building_on_fire():
+	for b in buildings_dictionnary.values():
+		if b.max_people_inside > 0 and b.exit_pos() != null and b.on_fire:
+			return true
+	return false
+
 func declare(building: Building):
 	for x in range(0, building.width):
 		for y in range(0, building.height):
