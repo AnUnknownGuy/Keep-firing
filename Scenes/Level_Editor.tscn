@@ -3,6 +3,7 @@
 [ext_resource path="res://Scripts/Buildings.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Entities.gd" type="Script" id=2]
 [ext_resource path="res://Resources/Images/TileMaps/tm_road.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/GUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Images/Sprite/dirt.png" type="Texture" id=5]
 [ext_resource path="res://Resources/Images/TileMaps/tm_dirt.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=7]
@@ -11,7 +12,6 @@
 [ext_resource path="res://Scripts/Navigation2D.gd" type="Script" id=10]
 [ext_resource path="res://Resources/Images/Sprite/building1.png" type="Texture" id=11]
 [ext_resource path="res://Resources/Images/TileMaps/tm_grass.png" type="Texture" id=12]
-[ext_resource path="res://Scenes/ItemButton.tscn" type="PackedScene" id=16]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 6, 0, 0, 12, 16, 12, 22, 0 )
@@ -320,62 +320,17 @@ __meta__ = {
 "_edit_horizontal_guides_": [  ],
 "_edit_vertical_guides_": [  ]
 }
-nb_cardboard = 5
-nb_jerrycan = 3
+nb_cardboard = 99
+nb_jerrycan = 99
+nb_grass = 99
+nb_forest = 99
+nb_house = 99
+nb_building = 99
+nb_gas_station = 99
+nb_hospital = 99
+nb_seconds = 99
 
-[node name="Buttons" type="Node2D" parent="."]
-z_index = 1001
-
-[node name="CardboardButton" parent="Buttons" instance=ExtResource( 16 )]
-position = Vector2( 60, 540 )
-icon_path = "res://Resources/Images/Sprite/ic_cardboard.png"
-scene_path = "res://Scenes/Cardboard.tscn"
-tile_type = 2
-
-[node name="JerrycanButton" parent="Buttons" instance=ExtResource( 16 )]
-position = Vector2( 141, 540 )
-icon_path = "res://Resources/Images/Sprite/ic_jerrycan.png"
-scene_path = "res://Scenes/Jerrycan.tscn"
-tile_type = 1
-
-[node name="GrassButton" parent="Buttons" instance=ExtResource( 16 )]
-position = Vector2( 285, 540 )
-icon_path = "res://Resources/Images/Sprite/ic_grass.png"
-scene_path = "res://Scenes/Grass.tscn"
-
-[node name="ForestButton" parent="Buttons" instance=ExtResource( 16 )]
-position = Vector2( 367, 540 )
-icon_path = "res://Resources/Images/Sprite/ic_forest.png"
-scene_path = "res://Scenes/Forest.tscn"
-
-[node name="HouseButton" parent="Buttons" instance=ExtResource( 16 )]
-position = Vector2( 447, 540 )
-icon_path = "res://Resources/Images/Sprite/ic_house.png"
-scene_path = "res://Scenes/House.tscn"
-
-[node name="BuildingButton" parent="Buttons" instance=ExtResource( 16 )]
-position = Vector2( 529, 540 )
-icon_path = "res://Resources/Images/Sprite/ic_building1.png"
-scene_path = "res://Scenes/Building1.tscn"
-
-[node name="GasStationButton" parent="Buttons" instance=ExtResource( 16 )]
-position = Vector2( 610, 540 )
-icon_path = "res://Resources/Images/Sprite/ic_gas_station.png"
-scene_path = "res://Scenes/GasStation.tscn"
-tile_width = 2
-
-[node name="HosiptalButton" parent="Buttons" instance=ExtResource( 16 )]
-position = Vector2( 691, 540 )
-icon_path = "res://Resources/Images/Sprite/ic_hospital.png"
-scene_path = "res://Scenes/Hospital.tscn"
-tile_width = 3
-
-[node name="TilePreview" type="Sprite" parent="."]
-pause_mode = 1
-self_modulate = Color( 1, 0.211765, 0.211765, 0.784314 )
-scale = Vector2( 3, 3 )
-z_index = 1000
-offset = Vector2( 5.5, 1.5 )
+[node name="GUI" parent="." instance=ExtResource( 4 )]
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 pause_mode = 1

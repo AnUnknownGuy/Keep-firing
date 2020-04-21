@@ -16,13 +16,13 @@ z_index = 1000
 offset = Vector2( 5.5, 1.5 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 75, 300 )
+position = Vector2( 988.5, 96 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 hframes = 2
 
 [node name="Numbers" parent="." instance=ExtResource( 3 )]
-position = Vector2( 75, 292 )
+position = Vector2( 988.5, 88 )
 scale = Vector2( 2, 2 )
 cell_custom_transform = Transform2D( 8, 0, 0, 8, -3, 0 )
 align = 1
