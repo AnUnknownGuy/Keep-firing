@@ -9,3 +9,4 @@ func handle_click():
 			get_node(show_node_path).show()
 	elif len(show_scene_path) > 0:
 		get_tree().change_scene(show_scene_path)
+		get_tree().paused = false

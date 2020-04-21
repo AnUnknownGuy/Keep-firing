@@ -1,21 +1,22 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://Scripts/Buildings.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Entities.gd" type="Script" id=2]
 [ext_resource path="res://Resources/Images/TileMaps/tm_road.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Water.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Resources/Images/Sprite/dirt.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Images/TileMaps/tm_dirt.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Grass.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Building1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Props.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Roads.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Navigation2D.gd" type="Script" id=10]
 [ext_resource path="res://Resources/Images/Sprite/building1.png" type="Texture" id=11]
 [ext_resource path="res://Resources/Images/TileMaps/tm_grass.png" type="Texture" id=12]
-[ext_resource path="res://Scenes/Hospital.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scenes/Building1.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/House.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Sprinkler.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Forest.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Jerrycan.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/GUI.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/FireDepartment.tscn" type="PackedScene" id=17]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 6, 0, 0, 12, 16, 12, 22, 0 )
@@ -281,49 +282,24 @@ resource_local_to_scene = true
 2/shape_one_way_margin = 0.0
 2/shapes = [  ]
 2/z_index = 0
-3/name = "dirt.png 3"
-3/texture = ExtResource( 5 )
-3/tex_offset = Vector2( 1, 0 )
-3/modulate = Color( 1, 1, 1, 1 )
-3/region = Rect2( 0, 0, 21, 12 )
-3/tile_mode = 0
-3/occluder_offset = Vector2( 0, 0 )
-3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( 0, 0 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape_one_way = false
-3/shape_one_way_margin = 0.0
-3/shapes = [  ]
-3/z_index = 0
-4/name = "tm_dirt.png 4"
-4/texture = ExtResource( 6 )
-4/tex_offset = Vector2( 1, 0 )
-4/modulate = Color( 1, 1, 1, 1 )
-4/region = Rect2( 0, 0, 63, 24 )
-4/tile_mode = 2
-4/autotile/icon_coordinate = Vector2( 0, 0 )
-4/autotile/tile_size = Vector2( 21, 12 )
-4/autotile/spacing = 0
-4/autotile/occluder_map = [  ]
-4/autotile/navpoly_map = [  ]
-4/autotile/priority_map = [ Vector3( 0, 0, 2 ), Vector3( 0, 1, 4 ), Vector3( 2, 0, 2 ), Vector3( 2, 1, 5 ) ]
-4/autotile/z_index_map = [  ]
-4/occluder_offset = Vector2( 0, 0 )
-4/navigation_offset = Vector2( 0, 0 )
-4/shape_offset = Vector2( 0, 0 )
-4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-4/shape_one_way = false
-4/shape_one_way_margin = 0.0
-4/shapes = [  ]
-4/z_index = 0
 
-[node name="Level1" type="Node2D"]
+[node name="Level" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ],
 "_edit_vertical_guides_": [  ]
 }
+nb_cardboard = 5
+nb_jerrycan = 3
+nb_grass = 2
+nb_forest = 2
+nb_house = 2
+nb_building = 2
+nb_gas_station = 2
+nb_hospital = 2
+
+[node name="GUI" parent="." instance=ExtResource( 16 )]
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 pause_mode = 1
@@ -336,118 +312,99 @@ tile_set = SubResource( 52 )
 cell_size = Vector2( 16, 12 )
 cell_custom_transform = Transform2D( 16, 0, -6, 12, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 0, 4, 2, 1, 4, 2, 2, 4, 0, 3, 4, 0, 4, 4, 65536, 5, 4, 2, 6, 4, 65538, 7, 4, 2, 8, 4, 65538, 9, 4, 65538, 10, 4, 65538, 11, 4, 65538, 12, 4, 65536, 13, 4, 65538, 14, 4, 65536, 15, 4, 65538, 16, 4, 0, 17, 4, 65538, 18, 4, 1, 19, 4, 65538, 20, 4, 1, 21, 4, 65536, 22, 4, 65536, 65536, 4, 2, 131072, 0, 327685, 131073, 0, 327684, 131074, 0, 327684, 131075, 0, 131072, 131076, 0, 327684, 131077, 0, 327684, 131078, 0, 327684, 131079, 0, 327684, 131080, 0, 327684, 131081, 0, 327684, 131082, 0, 327684, 131083, 0, 327684, 131084, 0, 327684, 131085, 0, 327684, 131086, 0, 327684, 131087, 0, 327684, 131088, 0, 327684, 131089, 0, 327684, 131090, 0, 327684, 131091, 0, 327684, 131092, 0, 327684, 131093, 0, 327684, 131094, 0, 262150, 196609, 4, 65538, 196610, 4, 65538, 196611, 0, 262148, 262145, 4, 0, 262146, 4, 65536, 262147, 0, 262148, 262149, 4, 65538, 262150, 4, 0, 262151, 4, 65538, 262152, 4, 65538, 262153, 4, 1, 262154, 4, 65537, 262155, 4, 65538, 262156, 4, 1, 262157, 4, 65538, 327682, 4, 65536, 327683, 0, 262148, 327685, 4, 0, 327686, 4, 65538, 327687, 4, 1, 327688, 4, 0, 327689, 4, 65536, 327690, 4, 65536, 327691, 4, 1, 327692, 4, 65537, 327693, 4, 65537, 393218, 4, 65537, 393219, 0, 262148, 458753, 0, 327685, 458754, 0, 327684, 458755, 0, 196609, 458756, 0, 327684, 458757, 0, 327684, 458758, 0, 327684, 458759, 0, 327684, 458760, 0, 131072, 458761, 0, 327684, 458762, 0, 327684, 458763, 0, 327684, 458764, 0, 327684, 458765, 0, 327684, 458766, 0, 327684, 458767, 0, 327684, 458768, 0, 327684, 458769, 0, 327684, 458770, 0, 327684, 458771, 0, 131072, 458772, 0, 327684, 458773, 0, 327684, 458774, 0, 327684, 458775, 0, 327684, 458776, 0, 262150, 524291, 4, 65538, 524292, 4, 65538, 524293, 4, 65538, 524294, 4, 65538, 524295, 4, 65538, 524296, 0, 262148, 524307, 0, 262148, 589827, 2, 1, 589828, 2, 1, 589829, 4, 65536, 589830, 4, 2, 589831, 4, 65538, 589832, 0, 262148, 589834, 4, 65538, 589835, 4, 1, 589836, 4, 65538, 589837, 4, 1, 589838, 4, 65536, 589839, 4, 2, 589840, 4, 65536, 589841, 4, 65538, 589843, 0, 262148, 589847, 4, 65536, 589848, 4, 65536, 589849, 4, 65536, 655363, 2, 0, 655364, 2, 0, 655365, 4, 65538, 655366, 4, 1, 655367, 4, 65536, 655368, 0, 262148, 655370, 4, 2, 655371, 4, 65538, 655376, 4, 1, 655377, 4, 65536, 655379, 0, 262148, 655383, 4, 65538, 655384, 2, 0, 655385, 2, 0, 720900, 2, 0, 720901, 4, 65538, 720902, 4, 65538, 720903, 4, 2, 720904, 0, 262148, 720906, 4, 65538, 720907, 4, 2, 720912, 4, 65536, 720913, 4, 2, 720915, 0, 262148, 720919, 4, 65538, 720920, 2, 1, 720921, 2, 0, 786436, 2, 0, 786437, 4, 0, 786438, 4, 65536, 786439, 4, 65536, 786440, 0, 262148, 786442, 4, 2, 786443, 4, 65538, 786448, 4, 65536, 786449, 4, 65536, 786451, 0, 262148, 786455, 4, 65538, 786456, 2, 0, 786457, 2, 0, 786458, 2, 3, 851973, 4, 1, 851974, 4, 65536, 851975, 4, 65536, 851976, 0, 262148, 851978, 4, 0, 851979, 4, 65538, 851984, 4, 65537, 851985, 4, 2, 851987, 0, 262148, 851991, 4, 65538, 851992, 2, 3, 851993, 2, 3, 851994, 2, 0, 851995, 2, 0, 917509, 4, 1, 917510, 4, 65538, 917511, 4, 65538, 917512, 0, 262148, 917514, 4, 65538, 917515, 4, 0, 917520, 4, 65537, 917521, 4, 65536, 917523, 0, 262148, 917527, 4, 65538, 917528, 2, 0, 917529, 2, 2, 917530, 2, 0, 917531, 2, 0, 983045, 4, 1, 983046, 4, 65536, 983047, 4, 0, 983048, 0, 196608, 983049, 0, 327683, 983050, 4, 0, 983051, 4, 65538, 983056, 4, 2, 983057, 4, 65538, 983059, 0, 196608, 983060, 0, 327683, 983063, 4, 65538, 983064, 2, 0, 983065, 2, 3, 983066, 2, 2, 983067, 2, 1, 1048582, 4, 65538, 1048583, 4, 65538, 1048584, 0, 262148, 1048586, 4, 65538, 1048587, 4, 0, 1048592, 4, 1, 1048593, 4, 2, 1048595, 0, 262148, 1048599, 4, 65538, 1048600, 2, 0, 1048601, 2, 0, 1048602, 2, 0, 1048603, 2, 0, 1114118, 4, 0, 1114119, 4, 65538, 1114120, 0, 327686, 1114131, 0, 327686 )
+tile_data = PoolIntArray( 2, 0, 262144, 3, 0, 327684, 4, 0, 327684, 5, 0, 327684, 6, 0, 131072, 7, 0, 327684, 8, 0, 262145, 65538, 0, 262148, 65542, 0, 262148, 65544, 0, 262148, 131074, 0, 327680, 131075, 0, 131072, 131076, 0, 327684, 131077, 0, 327684, 131078, 0, 196609, 131079, 0, 131072, 131080, 0, 196609, 131081, 0, 327684, 131082, 0, 327684, 131083, 0, 327684, 131084, 0, 327684, 131085, 0, 327684, 131086, 0, 262145, 196611, 0, 262148, 196615, 0, 262148, 196622, 0, 262148, 262147, 0, 327680, 262148, 0, 327684, 262149, 0, 131072, 262150, 0, 327684, 262151, 0, 196609, 262152, 0, 327684, 262153, 0, 262145, 262158, 0, 262148, 327685, 0, 262148, 327689, 0, 262148, 327694, 0, 262148, 393221, 0, 262148, 393225, 0, 196608, 393226, 0, 327684, 393227, 0, 327684, 393228, 0, 131072, 393229, 0, 327684, 393230, 0, 327681, 458757, 0, 327680, 458758, 0, 262145, 458761, 0, 262148, 458764, 0, 262148, 524294, 0, 262148, 524297, 0, 262148, 524300, 0, 262148, 589830, 0, 327680, 589831, 0, 327684, 589832, 0, 327684, 589833, 0, 196609, 589834, 0, 327684, 589835, 0, 327684, 589836, 0, 327681 )
 script = ExtResource( 9 )
 
 [node name="Buildings" type="Node2D" parent="Navigation2D"]
 script = ExtResource( 1 )
 
-[node name="Building1" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
-position = Vector2( 612, 216 )
+[node name="Building2" parent="Navigation2D/Buildings" instance=ExtResource( 6 )]
+position = Vector2( 702, 36 )
+height = 2
+max_people_inside = 10
 
-[node name="Building2" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
-position = Vector2( 816, 288 )
-
-[node name="Building3" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
-position = Vector2( 900, 216 )
-
-[node name="Hospital" parent="Navigation2D/Buildings" instance=ExtResource( 13 )]
-position = Vector2( 660, 36 )
-max_heat_transmitted = 3.0
-max_people_inside = 0
+[node name="Building3" parent="Navigation2D/Buildings" instance=ExtResource( 6 )]
+position = Vector2( 432, 0 )
+height = 2
+max_people_inside = 10
 
 [node name="Water" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 396, 360 )
+position = Vector2( 126, 36 )
 
 [node name="Water2" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 444, 360 )
+position = Vector2( 174, 36 )
 
 [node name="Water3" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 492, 360 )
+position = Vector2( 222, 36 )
 
 [node name="Water4" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 540, 360 )
-
-[node name="Water8" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 378, 396 )
-
-[node name="Water7" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 426, 396 )
-
-[node name="Water6" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 474, 396 )
+position = Vector2( 354, 252 )
 
 [node name="Water5" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 522, 396 )
+position = Vector2( 402, 252 )
 
-[node name="Water16" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 360, 432 )
+[node name="Water6" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
+position = Vector2( 336, 288 )
 
-[node name="Water15" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 408, 432 )
+[node name="Water7" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
+position = Vector2( 384, 288 )
 
-[node name="Water14" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 456, 432 )
+[node name="Sprinkler" parent="Navigation2D/Buildings" instance=ExtResource( 13 )]
+position = Vector2( 294, 180 )
 
-[node name="Water13" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 504, 432 )
+[node name="Sprinkler2" parent="Navigation2D/Buildings" instance=ExtResource( 13 )]
+position = Vector2( 210, 252 )
 
-[node name="Water12" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 342, 468 )
+[node name="Forest" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
+position = Vector2( 462, 324 )
 
-[node name="Water11" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 390, 468 )
+[node name="Forest2" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
+position = Vector2( 546, 252 )
 
-[node name="Water10" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 438, 468 )
+[node name="Forest3" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
+position = Vector2( 480, 288 )
 
-[node name="Water9" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 486, 468 )
+[node name="Forest4" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
+position = Vector2( 528, 288 )
 
-[node name="Water24" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 324, 504 )
+[node name="Forest5" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
+position = Vector2( 510, 324 )
 
-[node name="Water23" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 372, 504 )
+[node name="FireDepartment" parent="Navigation2D/Buildings" instance=ExtResource( 17 )]
+position = Vector2( 648, 144 )
 
-[node name="Water22" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 420, 504 )
+[node name="Grass" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
+position = Vector2( 138, 108 )
 
-[node name="Water21" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 468, 504 )
+[node name="Grass2" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
+position = Vector2( 186, 108 )
 
-[node name="Water20" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 306, 540 )
+[node name="Grass3" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
+position = Vector2( 234, 108 )
 
-[node name="Water19" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 354, 540 )
+[node name="Grass4" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
+position = Vector2( 198, 180 )
 
-[node name="Water18" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 402, 540 )
+[node name="Grass5" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
+position = Vector2( 246, 180 )
 
-[node name="Water17" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 450, 540 )
+[node name="Grass6" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
+position = Vector2( 180, 216 )
 
-[node name="Water32" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 288, 576 )
+[node name="Grass7" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
+position = Vector2( 228, 216 )
 
-[node name="Water31" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 336, 576 )
+[node name="Grass8" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
+position = Vector2( 276, 216 )
 
-[node name="Water30" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 384, 576 )
+[node name="Grass9" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
+position = Vector2( 258, 252 )
 
-[node name="Water29" parent="Navigation2D/Buildings" instance=ExtResource( 4 )]
-position = Vector2( 432, 576 )
+[node name="Grass10" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
+position = Vector2( 192, 288 )
 
-[node name="House2" parent="Navigation2D/Buildings" instance=ExtResource( 15 )]
-position = Vector2( 864, 288 )
-
-[node name="House3" parent="Navigation2D/Buildings" instance=ExtResource( 15 )]
-position = Vector2( 852, 216 )
-
-[node name="House4" parent="Navigation2D/Buildings" instance=ExtResource( 15 )]
-position = Vector2( 948, 216 )
+[node name="Grass11" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
+position = Vector2( 240, 288 )
 
 [node name="Entities" type="Node2D" parent="."]
 pause_mode = 1
@@ -457,4 +414,5 @@ script = ExtResource( 2 )
 pause_mode = 1
 script = ExtResource( 8 )
 
-[node name="GUI" parent="." instance=ExtResource( 16 )]
+[node name="Jerrycan" parent="Props" instance=ExtResource( 15 )]
+position = Vector2( 198, 180 )

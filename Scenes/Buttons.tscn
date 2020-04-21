@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/MenuButton.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/ItemButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Resources/Images/TileMaps/bt_back.png" type="Texture" id=4]
+
+[node name="Buttons" type="Node2D"]
+z_index = 1001
+
+[node name="CardboardButton" parent="." instance=ExtResource( 3 )]
+position = Vector2( 60, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_cardboard.png"
+scene_path = "res://Scenes/Cardboard.tscn"
+tile_type = 2
+
+[node name="JerrycanButton" parent="." instance=ExtResource( 3 )]
+position = Vector2( 141, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_jerrycan.png"
+scene_path = "res://Scenes/Jerrycan.tscn"
+tile_type = 1
+
+[node name="GrassButton" parent="." instance=ExtResource( 3 )]
+position = Vector2( 285, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_grass.png"
+scene_path = "res://Scenes/Grass.tscn"
+
+[node name="ForestButton" parent="." instance=ExtResource( 3 )]
+position = Vector2( 367, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_forest.png"
+scene_path = "res://Scenes/Forest.tscn"
+
+[node name="HouseButton" parent="." instance=ExtResource( 3 )]
+position = Vector2( 447, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_house.png"
+scene_path = "res://Scenes/House.tscn"
+
+[node name="BuildingButton" parent="." instance=ExtResource( 3 )]
+position = Vector2( 529, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_building1.png"
+scene_path = "res://Scenes/Building1.tscn"
+
+[node name="GasStationButton" parent="." instance=ExtResource( 3 )]
+position = Vector2( 610, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_gas_station.png"
+scene_path = "res://Scenes/GasStation.tscn"
+tile_width = 2
+
+[node name="HosiptalButton" parent="." instance=ExtResource( 3 )]
+position = Vector2( 691, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_hospital.png"
+scene_path = "res://Scenes/Hospital.tscn"
+tile_width = 3
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 939, 36 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 4 )
+vframes = 2
+script = ExtResource( 1 )
+show_scene_path = "res://Scenes/Menu.tscn"

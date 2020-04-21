@@ -14,7 +14,7 @@
 [ext_resource path="res://Resources/Images/TileMaps/tm_grass.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/House.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Grass.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/ItemButton.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/GUI.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/FireDepartment.tscn" type="PackedScene" id=17]
 
 [sub_resource type="NavigationPolygon" id=1]
@@ -324,27 +324,13 @@ __meta__ = {
 "_edit_horizontal_guides_": [  ],
 "_edit_vertical_guides_": [  ]
 }
-
-[node name="Buttons" type="Node2D" parent="."]
-visible = false
-z_index = 1001
-
-[node name="ItemButton" parent="Buttons" instance=ExtResource( 16 )]
-position = Vector2( 60, 540 )
-icon_path = "res://Resources/Images/Sprite/cardboard.png"
-scene_path = "res://Scenes/Cardboard.tscn"
-
-[node name="ItemButton2" parent="Buttons" instance=ExtResource( 16 )]
-position = Vector2( 141, 540 )
-icon_path = "res://Resources/Images/Sprite/jerrycan.png"
-scene_path = "res://Scenes/Jerrycan.tscn"
-
-[node name="TilePreview" type="Sprite" parent="."]
-pause_mode = 1
-self_modulate = Color( 1, 0.211765, 0.211765, 0.784314 )
-scale = Vector2( 3, 3 )
-z_index = 1000
-offset = Vector2( 5.5, 1.5 )
+nb_cardboard = 12
+nb_jerrycan = 2
+nb_grass = 4
+nb_house = 2
+nb_building = 2
+nb_hospital = 1
+nb_seconds = 32
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 pause_mode = 1
@@ -609,3 +595,5 @@ script = ExtResource( 2 )
 [node name="Props" type="Node2D" parent="."]
 pause_mode = 1
 script = ExtResource( 8 )
+
+[node name="GUI" parent="." instance=ExtResource( 15 )]

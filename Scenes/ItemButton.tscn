@@ -19,4 +19,5 @@ position = Vector2( 0, 9 )
 scale = Vector2( 0.5, 0.5 )
 cell_custom_transform = Transform2D( 0, 0, 0, 0, -3, 0 )
 tile_data = PoolIntArray( 65533, 0, 0, 0, 0, 0 )
+number = 0
 align = 1

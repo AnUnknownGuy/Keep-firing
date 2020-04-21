@@ -18,7 +18,7 @@ func set_align(a):
 	else:
 		v = Vector2(size, 0)
 	
-	cell_custom_transform = Transform2D(Vector2.ZERO, Vector2.ZERO, v)
+	cell_custom_transform = Transform2D(Vector2(8, 0), Vector2(0, 8), v)
 
 func set_number(num):
 	number = num

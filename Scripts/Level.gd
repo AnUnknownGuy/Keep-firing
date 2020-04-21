@@ -17,6 +17,7 @@ export(int) var nb_house = 0
 export(int) var nb_building = 0
 export(int) var nb_gas_station = 0
 export(int) var nb_hospital = 0
+export(int) var nb_seconds = 0
 
 var selected_scene = null
 var selected_type = 0
@@ -30,19 +31,21 @@ func set_scene(scene, type, width, button):
 		selected_scene = scene
 		selected_width = width
 		var spr = scene.instance().get_node("Sprite")
-		$TilePreview.texture = spr.texture
-		$TilePreview.offset = spr.offset
-		$TilePreview.centered = spr.centered
-		$TilePreview.hframes = spr.hframes
-		$TilePreview.vframes = spr.vframes
+		var tilePreview = $"GUI/TilePreview"
+		tilePreview.texture = spr.texture
+		tilePreview.offset = spr.offset
+		tilePreview.centered = spr.centered
+		tilePreview.hframes = spr.hframes
+		tilePreview.vframes = spr.vframes
 
 func highlight():
-	$TilePreview.texture = tile_highlight
-	$TilePreview.offset = Vector2(-5, 0)
-	$TilePreview.centered = false
-	$TilePreview.self_modulate = Color(0.211, 1, 0.211, 0.784)
-	$TilePreview.hframes = 1
-	$TilePreview.vframes = 1
+	var tilePreview = $"GUI/TilePreview"
+	tilePreview.texture = tile_highlight
+	tilePreview.offset = Vector2(-5, 0)
+	tilePreview.centered = false
+	tilePreview.self_modulate = Color(0.211, 1, 0.211, 0.784)
+	tilePreview.hframes = 1
+	tilePreview.vframes = 1
 
 var ignore_click = false
 var setting_fire = false
@@ -55,7 +58,7 @@ onready var cursor_fire = preload("res://Resources/Images/Sprite/cursor_fire.png
 func _input(event):
 	if event is InputEventMouseMotion:
 		var pos = Burnable.s_grid_pos(event.position)
-		$TilePreview.position = Burnable.pos_from_grid(pos)
+		$"GUI/TilePreview".position = Burnable.pos_from_grid(pos)
 		
 		if selected_scene != null:
 			var no_building = true
@@ -75,9 +78,9 @@ func _input(event):
 				else:
 					all_in_nav = false
 			
-			if no_props and (no_building or selected_type == 2):
+			if no_props :
 				if selected_type == 0: # Building
-					placable = none_in_nav
+					placable = none_in_nav and no_building
 				elif selected_type == 1: # Prop
 					placable = all_in_nav
 				elif selected_type == 2: # SProp
@@ -86,30 +89,32 @@ func _input(event):
 			else:
 				placable = false
 				
-			$TilePreview.self_modulate = Color(0.211, 1, 0.211, 0.784) if placable \
+			$"GUI/TilePreview".self_modulate = Color(0.211, 1, 0.211, 0.784) if placable \
 				else Color(1, 0.211, 0.211, 0.784)
 	
 	elif event is InputEventMouseButton and not event.is_echo():
-		if setting_fire and event.pressed:
-			var pos = Burnable.s_grid_pos($TilePreview.position)
+		
+		if setting_fire and event.pressed and event.button_index == 1 :
+			var pos = Burnable.s_grid_pos($"GUI/TilePreview".position)
 			var build = $Navigation2D/Buildings.get_building_at(pos)
 			if build != null and build.can_be_on_fire:
 				build.set_on_fire()
 				setting_fire = false
 				get_tree().paused = false
-				$Buttons.show()
+				$"GUI/Buttons".show()
 		
 		if not setting_fire:
 			Input.set_custom_mouse_cursor(cursor_click if event.pressed else cursor)
 		
-		if event.pressed and not ignore_click and selected_scene != null and placable:
+		if event.pressed and not ignore_click and selected_scene != null and placable and event.button_index == 1 :
 			var placed = selected_scene.instance()
-			placed.position = $TilePreview.position
+			placed.position = $"GUI/TilePreview".position
 			var coll = $Navigation2D/Buildings if selected_type == 0 else $Props
 			coll.add_child(placed)
 			coll.declare(placed)
 			placed.set_owner(self)
 			placed.post_init()
+			placed.removable = true
 			
 			var n_count = clicked_button.get_count() - 1
 			clicked_button.set_count(n_count)
@@ -117,30 +122,65 @@ func _input(event):
 			if n_count == 0:
 				highlight()
 				selected_scene = null
-	
-	elif event is InputEventKey and event.pressed and not event.is_echo():
-		if event.scancode == KEY_SPACE:
-			get_tree().paused = not get_tree().paused
+		
+		elif event.pressed and not ignore_click and event.button_index == 2 :
+			print("clic droit")
+			var position = Burnable.s_grid_pos($"GUI/TilePreview".position)
+			var prop = $Props.get_building_at(position)
+			if prop != null:
+				if prop.removable:
+					$Props.remove(prop)
+					var path = prop.get_node("Sprite").texture.get_path()
+					var button
+					if "cardboard" in path:
+						button = $GUI/Buttons/CardboardButton
+					elif "jerrycan" in path:
+						button = $GUI/Buttons/JerrycanButton
+					
+					button.set_count(button.get_count()+1)
+					
+					prop.queue_free()
+			else:
+				var building = $"Navigation2D/Buildings".get_building_at(position)
+				if building != null:
+					if building.removable:
+						$"Navigation2D/Buildings".remove(building)
+						
+						var path = building.get_node("Sprite").texture.get_path()
+						var button
+						if "grass" in path:
+							button = $GUI/Buttons/GrassButton
+						elif "forest" in path:
+							button = $GUI/Buttons/ForestButton
+						elif "house" in path:
+							button = $GUI/Buttons/HouseButton
+						elif "building" in path:
+							button = $GUI/Buttons/BuildingButton
+						elif "gas_station" in path:
+							button = $GUI/Buttons/GasStationButton
+						elif "hospital" in path:
+							button = $GUI/Buttons/HosiptalButton
+					
+						button.set_count(button.get_count()+1)
+					
+						building.queue_free()
 
 func _ready():
 	VisualServer.set_default_clear_color(Color(0.654,0.654,0.654,1.0))
 	highlight()
 	
 	init_counts()
-	
-	Input.set_custom_mouse_cursor(cursor_fire, Input.CURSOR_ARROW, Vector2(3, 6))
-	get_tree().paused = true
-	setting_fire = true
 
 func init_counts():
-	$Buttons/CardboardButton.set_count(nb_cardboard)
-	$Buttons/JerrycanButton.set_count(nb_jerrycan)
-	$Buttons/GrassButton.set_count(nb_grass)
-	$Buttons/ForestButton.set_count(nb_forest)
-	$Buttons/HouseButton.set_count(nb_house)
-	$Buttons/BuildingButton.set_count(nb_building)
-	$Buttons/GasStationButton.set_count(nb_gas_station)
-	$Buttons/HosiptalButton.set_count(nb_hospital)
+	$GUI/Buttons/CardboardButton.set_count(nb_cardboard)
+	$GUI/Buttons/JerrycanButton.set_count(nb_jerrycan)
+	$GUI/Buttons/GrassButton.set_count(nb_grass)
+	$GUI/Buttons/ForestButton.set_count(nb_forest)
+	$GUI/Buttons/HouseButton.set_count(nb_house)
+	$GUI/Buttons/BuildingButton.set_count(nb_building)
+	$GUI/Buttons/GasStationButton.set_count(nb_gas_station)
+	$GUI/Buttons/HosiptalButton.set_count(nb_hospital)
+	$GUI/Numbers.set_number(int(nb_seconds))
 
 func _process(delta):
 	entities = $Entities.get_children()

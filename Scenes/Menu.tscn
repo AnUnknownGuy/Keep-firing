@@ -580,6 +580,7 @@ z_index = 1001
 texture = ExtResource( 22 )
 vframes = 2
 script = ExtResource( 13 )
+show_scene_path = "res://Scenes/Level0.tscn"
 
 [node name="bt_normal" type="Sprite" parent="Difficulty"]
 position = Vector2( 512, 400 )
@@ -588,7 +589,7 @@ z_index = 1001
 texture = ExtResource( 21 )
 vframes = 2
 script = ExtResource( 13 )
-show_scene_path = "res://Scenes/Level.tscn"
+show_scene_path = "res://Scenes/Level1.tscn"
 
 [node name="bt_hot" type="Sprite" parent="Difficulty"]
 position = Vector2( 775, 400 )
@@ -597,6 +598,7 @@ z_index = 1001
 texture = ExtResource( 20 )
 vframes = 2
 script = ExtResource( 13 )
+show_scene_path = "res://Scenes/Level2.tscn"
 
 [node name="bt_back2" type="Sprite" parent="Difficulty"]
 position = Vector2( 512, 505.351 )

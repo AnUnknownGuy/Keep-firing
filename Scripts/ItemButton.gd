@@ -19,5 +19,5 @@ func _ready():
 	$Sprite.texture = load(icon_path)
 
 func handle_click():
-	owner.set_scene(load(scene_path), tile_type, tile_width, self)
-	owner.ignore_click = true
+	$"../../../".set_scene(load(scene_path), tile_type, tile_width, self)
+	$"../../../".ignore_click = true
