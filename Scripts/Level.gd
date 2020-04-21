@@ -55,6 +55,11 @@ onready var cursor = preload("res://Resources/Images/Sprite/cursor.png")
 onready var cursor_click = preload("res://Resources/Images/Sprite/cursor_click.png")
 onready var cursor_fire = preload("res://Resources/Images/Sprite/cursor_fire.png")
 
+func start():
+	get_tree().paused = false
+	setting_fire = true
+	Input.set_custom_mouse_cursor(cursor_fire, Input.CURSOR_ARROW, Vector2(3, 6 ))
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		var pos = Burnable.s_grid_pos(event.position)
@@ -91,7 +96,7 @@ func _input(event):
 				
 			$"GUI/TilePreview".self_modulate = Color(0.211, 1, 0.211, 0.784) if placable \
 				else Color(1, 0.211, 0.211, 0.784)
-	
+
 	elif event is InputEventMouseButton and not event.is_echo():
 		
 		if setting_fire and event.pressed and event.button_index == 1 :
@@ -168,7 +173,7 @@ func _input(event):
 func _ready():
 	VisualServer.set_default_clear_color(Color(0.654,0.654,0.654,1.0))
 	highlight()
-	
+	get_tree().paused = true
 	init_counts()
 
 func init_counts():
@@ -180,7 +185,6 @@ func init_counts():
 	$GUI/Buttons/BuildingButton.set_count(nb_building)
 	$GUI/Buttons/GasStationButton.set_count(nb_gas_station)
 	$GUI/Buttons/HosiptalButton.set_count(nb_hospital)
-	$GUI/Numbers.set_number(int(nb_seconds))
 
 func _process(delta):
 	entities = $Entities.get_children()

@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Scenes/Buttons.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Resources/Images/TileMaps/bt_item.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Numbers.tscn" type="PackedScene" id=3]
 
 [node name="GUI" type="Node2D"]
 
@@ -14,15 +12,3 @@ self_modulate = Color( 1, 0.211765, 0.211765, 0.784314 )
 scale = Vector2( 3, 3 )
 z_index = 1000
 offset = Vector2( 5.5, 1.5 )
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 988.5, 96 )
-scale = Vector2( 3, 3 )
-texture = ExtResource( 2 )
-hframes = 2
-
-[node name="Numbers" parent="." instance=ExtResource( 3 )]
-position = Vector2( 988.5, 88 )
-scale = Vector2( 2, 2 )
-cell_custom_transform = Transform2D( 8, 0, 0, 8, -3, 0 )
-align = 1
