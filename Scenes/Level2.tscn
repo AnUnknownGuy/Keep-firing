@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://Scripts/Buildings.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Entities.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Scenes/Building1.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/House.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/GUI.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/FireDepartment.tscn" type="PackedScene" id=17]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 6, 0, 0, 12, 16, 12, 22, 0 )
@@ -324,6 +325,11 @@ __meta__ = {
 "_edit_horizontal_guides_": [  ],
 "_edit_vertical_guides_": [  ]
 }
+nb_jerrycan = 4
+nb_grass = 30
+nb_forest = 2
+nb_house = 2
+nb_hospital = 1
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 pause_mode = 1
@@ -448,6 +454,12 @@ position = Vector2( 852, 216 )
 
 [node name="House4" parent="Navigation2D/Buildings" instance=ExtResource( 15 )]
 position = Vector2( 948, 216 )
+
+[node name="FireDepartment" parent="Navigation2D/Buildings" instance=ExtResource( 17 )]
+position = Vector2( 708, 504 )
+
+[node name="FireDepartment2" parent="Navigation2D/Buildings" instance=ExtResource( 17 )]
+position = Vector2( 180, 504 )
 
 [node name="Entities" type="Node2D" parent="."]
 pause_mode = 1

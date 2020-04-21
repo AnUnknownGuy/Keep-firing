@@ -18,7 +18,11 @@ func get_random_building(ignore = null):
 		return choices[int(floor(randf() * choices.size()))]
 
 func remove(building: Building):
-	buildings_dictionnary.erase(building.grid_pos())
+	for x in range(0, building.width):
+		for y in range(0, building.height):
+			buildings_dictionnary.erase(building.grid_pos() + Vector2(x, y))
+			
+		
 
 func get_random_building_on_fire():
 	var choices = []
