@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/MenuButton.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Images/TileMaps/bt_start.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Images/Sprite/tutorial.png" type="Texture" id=3]
+
+[node name="Tutorial" type="Node2D"]
+
+[node name="tutorial" type="Sprite" parent="."]
+position = Vector2( -3, -2 )
+scale = Vector2( 4.05, 4.05 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="bt_start" type="Sprite" parent="."]
+position = Vector2( 914.631, 53.9071 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
+vframes = 2
+script = ExtResource( 1 )
+show_scene_path = "res://Scenes/Menu.tscn"

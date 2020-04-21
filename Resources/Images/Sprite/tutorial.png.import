@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bt_start.png-503cdef4cc8209732e610833761a409a.stex"
+path="res://.import/tutorial.png-cdf907c79979fcc6deb9f6d08471e2db.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Images/TileMaps/bt_start.png"
-dest_files=[ "res://.import/bt_start.png-503cdef4cc8209732e610833761a409a.stex" ]
+source_file="res://Resources/Images/Sprite/tutorial.png"
+dest_files=[ "res://.import/tutorial.png-cdf907c79979fcc6deb9f6d08471e2db.stex" ]
 
 [params]
 
