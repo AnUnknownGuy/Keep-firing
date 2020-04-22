@@ -123,8 +123,6 @@ func set_goal(b):
 	goal_building = b
 	
 	if b != null:
-		if path == null:
-			path = []
 		var exit_pos = b.exit_pos()
 		if stepify(position.x, 1) == stepify(exit_pos.x, 1) and stepify(position.y, 1) == stepify(exit_pos.y, 1):
 			path.remove(0)

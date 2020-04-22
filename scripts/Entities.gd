@@ -17,9 +17,6 @@ func declare(entity: Entity):
 func remove(entity: Entity):
 	entities_dictionnary[entity.grid_pos()].erase(entity)
 
-func remove_all():
-	entities_dictionnary.clear()
-
 func change_pos_of(entity: Entity, old_pos: Vector2):
 	entities_dictionnary[old_pos].erase(entity)
 	declare(entity)

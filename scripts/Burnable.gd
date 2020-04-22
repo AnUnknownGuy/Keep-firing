@@ -26,21 +26,6 @@ var removable: int = false
 export var height = 1
 export var width = 1
 
-func reset():
-	added_heat = 0
-	current_heat = 0
-	cooling = 0
-	on_fire = false
-	burned = false
-	state = 0
-	time_remaining = time_alive_on_fire
-	if has_node("Fire"):
-		$Fire.restart()
-		$Fire.emitting = false
-	
-	if has_node("Sprite"):
-		$Sprite.frame = 0
-	
 
 func _ready():
 	time_remaining = time_alive_on_fire
@@ -54,7 +39,6 @@ func post_init():
 	entities = owner.get_node("Entities")
 	props = owner.get_node("Props")
 	set_z()
-
 
 func grid_pos(pos: Vector2 = position):
 	return s_grid_pos(pos)
