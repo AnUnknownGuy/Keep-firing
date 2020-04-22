@@ -5,6 +5,7 @@ var mouse_pos = Vector2(0, 0)
 var is_in = false
 
 func handle_click():
+	$"../../".reset()
 	pass
 
 func _input(event):

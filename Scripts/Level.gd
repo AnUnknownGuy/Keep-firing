@@ -60,6 +60,30 @@ func start():
 	setting_fire = true
 	Input.set_custom_mouse_cursor(cursor_fire, Input.CURSOR_ARROW, Vector2(3, 6 ))
 
+func reset():
+	
+	entities = $Entities.get_children()
+	props = $Props.get_children()
+	buildings = $"Navigation2D/Buildings".get_children()
+	
+	get_tree().paused = true
+	$Entities.remove_all()
+	
+	$"GUI/Buttons".show()
+	$"GUI/TilePreview".show()
+	$"GUI/Reset".hide()
+		
+	for b in buildings:
+		b.reset()
+		
+	for e in entities:
+		e.queue_free()
+		
+	for p in props:
+		p.reset()
+	
+
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		var pos = Burnable.s_grid_pos(event.position)
@@ -106,7 +130,10 @@ func _input(event):
 				build.set_on_fire()
 				setting_fire = false
 				get_tree().paused = false
-				$"GUI/Buttons".show()
+				$"GUI/Buttons".hide()
+				$"GUI/TilePreview".hide()
+				$"GUI/Reset".show()
+				Input.set_custom_mouse_cursor(cursor, Input.CURSOR_ARROW, Vector2(3, 6 ))
 		
 		if not setting_fire:
 			Input.set_custom_mouse_cursor(cursor_click if event.pressed else cursor)
