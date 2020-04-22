@@ -8,6 +8,13 @@ var goal
 var firemen = []
 export var cooling_power = 0
 
+func reset():
+	.reset()
+	firemen = []
+	goal = null
+	has_spawned = false
+	
+
 func set_goal():
 	goal = get_parent().get_random_building_on_fire()
 	for f in firemen:

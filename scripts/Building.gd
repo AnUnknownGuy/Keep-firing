@@ -9,6 +9,11 @@ var people_inside = 0
 var people_timer = 0
 export var door_location: Vector2 = Vector2(0,0)
 
+func reset():
+	.reset()
+	people_inside = round(max_people_inside / 2)
+	
+
 func reset_timer():
 	if people_inside == 0:
 		people_timer = 0
