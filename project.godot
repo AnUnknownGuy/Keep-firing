@@ -51,12 +51,15 @@ _global_script_class_icons={
 [application]
 
 config/name="Fire Up"
-run/main_scene="res://Scenes/Menu.tscn"
+run/main_scene="res://Scenes/Tutorial.tscn"
 config/icon="res://icon.png"
 
 [display]
 
+window/size/resizable=false
 mouse_cursor/custom_image="res://Resources/Images/Sprite/cursor.png"
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [rendering]
 
