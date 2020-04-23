@@ -20,7 +20,7 @@ func reset_timer():
 	else:
 		people_timer = float(rand_range(1, 15)) / people_inside
 		if on_fire:
-			people_timer = 1.0
+			people_timer = 0.2
 
 var grid_pos_buffer = null
 
@@ -102,6 +102,8 @@ func spawn_human():
 		human.post_init()
 		var b = buildings.get_random_building(grid_pos())
 		human.set_goal(b)
+		if on_fire:
+			human.set_on_fire()
 
 func add_human(human: Human):
 	people_inside += 1

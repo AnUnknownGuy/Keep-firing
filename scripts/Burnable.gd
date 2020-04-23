@@ -12,6 +12,7 @@ export var time_alive_on_fire: int = 0
 var time_remaining: int = 0
 
 export var can_be_on_fire: bool = true
+var to_burn
 
 export var current_heat: float = 0
 var added_heat: float = 0
@@ -33,6 +34,7 @@ func reset():
 	on_fire = false
 	burned = false
 	state = 0
+	can_be_on_fire = to_burn
 	time_remaining = time_alive_on_fire
 	if has_node("Fire"):
 		$Fire.restart()
@@ -48,6 +50,7 @@ func _ready():
 		nb_state = $Sprite.vframes * $Sprite.hframes -1
 	if nb_state < 1: nb_state = 2
 	if on_fire: set_on_fire()
+	to_burn = can_be_on_fire
 
 func post_init():
 	buildings = owner.get_node("Navigation2D/Buildings")
@@ -127,10 +130,7 @@ func set_on_fire():
 
 
 func stop_fire():
-	on_fire = false
-	$Fire.emitting = false
-	state = 0
-	$Sprite.frame = state
+	reset()
 	
 
 func inc_state():
@@ -150,7 +150,7 @@ func inc_state():
 func terminated():
 		on_fire = false
 		can_be_on_fire = false
-		burned = false
+		burned = true
 		current_heat = 0
 
 func transfer_heat():

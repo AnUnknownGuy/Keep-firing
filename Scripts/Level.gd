@@ -56,12 +56,10 @@ onready var cursor_click = preload("res://Resources/Images/Sprite/cursor_click.p
 onready var cursor_fire = preload("res://Resources/Images/Sprite/cursor_fire.png")
 
 func start():
-	get_tree().paused = false
 	setting_fire = true
 	Input.set_custom_mouse_cursor(cursor_fire, Input.CURSOR_ARROW, Vector2(3, 6 ))
 
 func reset():
-	
 	entities = $Entities.get_children()
 	props = $Props.get_children()
 	buildings = $"Navigation2D/Buildings".get_children()
@@ -81,7 +79,7 @@ func reset():
 		
 	for p in props:
 		p.reset()
-	
+	updateObjective()
 
 
 func _input(event):
@@ -109,12 +107,12 @@ func _input(event):
 			
 			if no_props :
 				if selected_type == 0: # Building
-					placable = none_in_nav and no_building
+					placable = none_in_nav and no_building and not $Navigation2D/Roads.is_road(pos)
 				elif selected_type == 1: # Prop
-					placable = all_in_nav
+					placable = all_in_nav or $Navigation2D/Roads.is_road(pos)
 				elif selected_type == 2: # SProp
 					var b = $Navigation2D/Buildings.get_building_at(pos)
-					placable = all_in_nav or (b != null and b.max_people_inside > 0)
+					placable = all_in_nav or (b != null and b.max_people_inside > 0) or $Navigation2D/Roads.is_road(pos)
 			else:
 				placable = false
 				
@@ -196,12 +194,30 @@ func _input(event):
 						button.set_count(button.get_count()+1)
 					
 						building.queue_free()
+		updateObjective()
 
 func _ready():
 	VisualServer.set_default_clear_color(Color(0.654,0.654,0.654,1.0))
 	highlight()
 	get_tree().paused = true
 	init_counts()
+	updateObjective()
+
+func updateObjective():
+	entities = $Entities.get_children()
+	props = $Props.get_children()
+	buildings = $"Navigation2D/Buildings".get_children()
+	
+	var nb_total = 0
+	
+	for b in buildings:
+		if b.can_be_on_fire:
+			nb_total += 1
+		
+	for p in props:
+		if p.can_be_on_fire:
+			nb_total += 1
+	$GUI/Counter/Objective.set_number(nb_total)
 
 func init_counts():
 	$GUI/Buttons/CardboardButton.set_count(nb_cardboard)
@@ -244,3 +260,4 @@ func _process(delta):
 		
 		for p in props:
 			p.set_new_heat()
+	updateObjective()
