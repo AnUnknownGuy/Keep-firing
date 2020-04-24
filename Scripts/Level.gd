@@ -6,7 +6,7 @@ onready var props = $Props.get_children()
 
 onready var tile_highlight = preload("res://Resources/Images/Sprite/tile_border.png")
 
-var burn_timer_max: float = 0.5
+var burn_timer_max: float = 0.25
 var burn_timer = burn_timer_max
 
 export(int) var nb_cardboard = 0
@@ -17,7 +17,9 @@ export(int) var nb_house = 0
 export(int) var nb_building = 0
 export(int) var nb_gas_station = 0
 export(int) var nb_hospital = 0
-export(int) var nb_seconds = 0
+export(int) var objective_timer = 0
+
+var current_timer = objective_timer
 
 var selected_scene = null
 var selected_type = 0
@@ -79,6 +81,9 @@ func reset():
 		
 	for p in props:
 		p.reset()
+	
+	current_timer = 0
+	
 	updateObjective()
 
 
@@ -208,16 +213,26 @@ func updateObjective():
 	props = $Props.get_children()
 	buildings = $"Navigation2D/Buildings".get_children()
 	
+	var current = 0
 	var nb_total = 0
 	
 	for b in buildings:
-		if b.can_be_on_fire:
+		if b.to_burn:
 			nb_total += 1
-		
+			if b.burned:
+				current += 1
+	
 	for p in props:
-		if p.can_be_on_fire:
+		if p.to_burn:
 			nb_total += 1
-	$GUI/Counter/Objective.set_number(nb_total)
+			if p.burned:
+				current += 1
+	
+	
+	$GUI/Counter/Objective.set_number(current)
+	$GUI/Counter/Max.set_number(nb_total)
+	$GUI/Timer/Objective.set_number(int(current_timer))
+	$GUI/Timer/Max.set_number(int(objective_timer))
 
 func init_counts():
 	$GUI/Buttons/CardboardButton.set_count(nb_cardboard)
@@ -230,34 +245,36 @@ func init_counts():
 	$GUI/Buttons/HosiptalButton.set_count(nb_hospital)
 
 func _process(delta):
-	entities = $Entities.get_children()
-	props = $Props.get_children()
-	buildings = $"Navigation2D/Buildings".get_children()
 	ignore_click = false
-	
-	burn_timer -= delta
-	if burn_timer < 0:
-		burn_timer += burn_timer_max
+	if not get_tree().paused:
+		entities = $Entities.get_children()
+		props = $Props.get_children()
+		buildings = $"Navigation2D/Buildings".get_children()
 		
-		for b in buildings:
-			b.transfer_heat()
-
-		for e in entities:
-			e.transfer_heat()
-			if "stop_moving" in e:
-				if e.stop_moving:
-					if e.goal_building != null:
-						e.goal_building.add_heat(-e.cooling_power)
-		
-		for p in props:
-			p.transfer_heat()
-		
-		for b in buildings:
-			b.set_new_heat()
+		current_timer += delta
+		burn_timer -= delta
+		if burn_timer < 0:
+			burn_timer += burn_timer_max
 			
-		for e in entities:
-			e.set_new_heat()
-		
-		for p in props:
-			p.set_new_heat()
+			for b in buildings:
+				b.transfer_heat()
+	
+			for e in entities:
+				e.transfer_heat()
+				if "stop_moving" in e:
+					if e.stop_moving:
+						if e.goal_building != null:
+							e.goal_building.add_heat(-e.cooling_power)
+			
+			for p in props:
+				p.transfer_heat()
+			
+			for b in buildings:
+				b.set_new_heat()
+				
+			for e in entities:
+				e.set_new_heat()
+			
+			for p in props:
+				p.set_new_heat()
 	updateObjective()

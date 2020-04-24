@@ -52,7 +52,7 @@ scene_path = "res://Scenes/Hospital.tscn"
 tile_width = 3
 
 [node name="StartButton" type="Sprite" parent="."]
-position = Vector2( 900, 468 )
+position = Vector2( 888, 540 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 vframes = 2
