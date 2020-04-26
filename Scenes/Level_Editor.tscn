@@ -320,15 +320,14 @@ __meta__ = {
 "_edit_horizontal_guides_": [  ],
 "_edit_vertical_guides_": [  ]
 }
-nb_cardboard = 99
-nb_jerrycan = 99
-nb_grass = 99
-nb_forest = 99
-nb_house = 99
-nb_building = 99
-nb_gas_station = 99
-nb_hospital = 99
-nb_seconds = 99
+nb_cardboard = -1
+nb_jerrycan = -1
+nb_grass = -1
+nb_forest = -1
+nb_house = -1
+nb_building = -1
+nb_gas_station = -1
+nb_hospital = -1
 
 [node name="GUI" parent="." instance=ExtResource( 4 )]
 

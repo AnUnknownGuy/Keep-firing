@@ -25,7 +25,9 @@ func set_number(num):
 	
 	clear()
 	
-	if num == 0:
+	if num < 0:
+		return
+	elif num == 0:
 		set_cell(0, 0, 0)
 	else:
 		var digits = []

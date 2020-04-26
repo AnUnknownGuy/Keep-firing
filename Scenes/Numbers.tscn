@@ -149,7 +149,7 @@
 mode = 2
 tile_set = SubResource( 1 )
 cell_size = Vector2( 8, 8 )
-cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_custom_transform = Transform2D( 8, 0, 0, 8, 0, 0 )
 format = 1
 tile_data = PoolIntArray( 0, 0, 0 )
 script = ExtResource( 1 )

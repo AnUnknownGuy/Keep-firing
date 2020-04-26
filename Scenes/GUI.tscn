@@ -1,16 +1,21 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Buttons.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/MenuButton.gd" type="Script" id=2]
-[ext_resource path="res://Resources/Images/TileMaps/bt_back.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Images/TileMaps/bt_menu.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Images/TileMaps/bt_reset.png" type="Texture" id=4]
-[ext_resource path="res://Scripts/Button.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/ResetButton.gd" type="Script" id=5]
 [ext_resource path="res://Resources/Images/TileMaps/bt_item.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Numbers.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Resources/Images/Sprite/chrono.png" type="Texture" id=8]
 [ext_resource path="res://Resources/Images/Sprite/burn.png" type="Texture" id=9]
+[ext_resource path="res://Scripts/ButtonStart.gd" type="Script" id=10]
+[ext_resource path="res://Resources/Images/TileMaps/bt_start.png" type="Texture" id=11]
 
 [node name="GUI" type="Node2D"]
+__meta__ = {
+"_edit_vertical_guides_": [ 1002.0 ]
+}
 
 [node name="Buttons" parent="." instance=ExtResource( 1 )]
 
@@ -21,8 +26,8 @@ scale = Vector2( 3, 3 )
 z_index = 1000
 offset = Vector2( 5.5, 1.5 )
 
-[node name="Back" type="Sprite" parent="."]
-position = Vector2( 900, 36 )
+[node name="Menu" type="Sprite" parent="."]
+position = Vector2( 944, 49.6845 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 3 )
 vframes = 2
@@ -31,17 +36,22 @@ show_scene_path = "res://Scenes/Menu.tscn"
 
 [node name="Reset" type="Sprite" parent="."]
 visible = false
-position = Vector2( 900, 396 )
+position = Vector2( 919, 464 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 4 )
 vframes = 2
 script = ExtResource( 5 )
 
+[node name="Start" type="Sprite" parent="."]
+position = Vector2( 919, 464 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 11 )
+vframes = 2
+script = ExtResource( 10 )
+
 [node name="Timer" type="Node2D" parent="."]
-position = Vector2( 897, 288 )
-__meta__ = {
-"_edit_group_": true
-}
+position = Vector2( 933, 288 )
+z_index = 1000
 
 [node name="Box" type="Sprite" parent="Timer"]
 position = Vector2( 34.5, 0 )
@@ -63,7 +73,7 @@ align = 1
 
 [node name="SpriteChrono" type="Sprite" parent="Timer"]
 position = Vector2( -26, 0 )
-scale = Vector2( 2, 2 )
+scale = Vector2( 3, 3 )
 texture = ExtResource( 8 )
 
 [node name="ColorRect" type="ColorRect" parent="Timer"]
@@ -71,13 +81,14 @@ margin_left = 12.0
 margin_top = -1.0
 margin_right = 56.5
 margin_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Counter" type="Node2D" parent="."]
-position = Vector2( 897, 360 )
+position = Vector2( 933, 360 )
+z_index = 1000
 
 [node name="Sprite" type="Sprite" parent="Counter"]
 position = Vector2( 34.5, 0 )
@@ -107,7 +118,7 @@ margin_left = 12.4
 margin_top = -1.0
 margin_right = 56.9
 margin_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -468,207 +468,289 @@ position = Vector2( 504, 432 )
 
 [node name="Grass" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 648, 432 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass2" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 456, 432 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass3" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 666, 396 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass4" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 618, 396 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass5" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 570, 396 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass23" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 426, 396 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass22" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 378, 396 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass21" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 330, 396 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass13" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 552, 432 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass6" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 522, 396 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass7" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 474, 396 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass12" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 684, 360 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass11" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 636, 360 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass10" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 588, 360 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass9" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 540, 360 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass8" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 492, 360 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass20" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 282, 396 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass19" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 234, 396 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass28" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 318, 324 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass27" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 270, 324 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass34" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 354, 252 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass33" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 306, 252 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass45" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 408, 144 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass44" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 360, 144 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass43" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 444, 72 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass42" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 396, 72 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass18" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 444, 360 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass17" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 396, 360 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass16" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 348, 360 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass15" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 300, 360 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass14" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 252, 360 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass41" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 390, 180 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass40" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 342, 180 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass25" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 336, 288 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass24" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 288, 288 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass39" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 426, 108 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass38" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 378, 108 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass31" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 372, 216 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass30" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 324, 216 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass37" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 462, 36 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Grass36" parent="Navigation2D/Buildings" instance=ExtResource( 14 )]
 position = Vector2( 414, 36 )
+current_heat = true
 on_fire = false
+height = 0
 door_location = Vector2( 0, 0 )
 
 [node name="Entities" type="Node2D" parent="."]

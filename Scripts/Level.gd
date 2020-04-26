@@ -27,7 +27,7 @@ var selected_width = 1
 var clicked_button = null
 
 func set_scene(scene, type, width, button):
-	if button.get_count() > 0:
+	if button.get_count() != 0:
 		clicked_button = button
 		selected_type = type
 		selected_scene = scene
@@ -59,7 +59,9 @@ onready var cursor_fire = preload("res://Resources/Images/Sprite/cursor_fire.png
 
 func start():
 	setting_fire = true
-	Input.set_custom_mouse_cursor(cursor_fire, Input.CURSOR_ARROW, Vector2(3, 6 ))
+	selected_scene = null
+	highlight()
+	Input.set_custom_mouse_cursor(cursor_fire, Input.CURSOR_ARROW, Vector2(3, 6))
 
 func reset():
 	entities = $Entities.get_children()
@@ -71,6 +73,7 @@ func reset():
 	
 	$"GUI/Buttons".show()
 	$"GUI/TilePreview".show()
+	$"GUI/Start".show()
 	$"GUI/Reset".hide()
 		
 	for b in buildings:
@@ -83,6 +86,8 @@ func reset():
 		p.reset()
 	
 	current_timer = 0
+	
+	setting_fire = false
 	
 	updateObjective()
 
@@ -127,6 +132,7 @@ func _input(event):
 	elif event is InputEventMouseButton and not event.is_echo():
 		
 		if setting_fire and event.pressed and event.button_index == 1 :
+			print("test")
 			var pos = Burnable.s_grid_pos($"GUI/TilePreview".position)
 			var build = $Navigation2D/Buildings.get_building_at(pos)
 			if build != null and build.can_be_on_fire:
@@ -158,8 +164,7 @@ func _input(event):
 				highlight()
 				selected_scene = null
 		
-		elif event.pressed and not ignore_click and event.button_index == 2 :
-			print("clic droit")
+		elif event.pressed and not ignore_click and event.button_index == 2:
 			var position = Burnable.s_grid_pos($"GUI/TilePreview".position)
 			var prop = $Props.get_building_at(position)
 			if prop != null:
