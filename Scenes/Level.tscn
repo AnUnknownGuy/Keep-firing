@@ -232,7 +232,7 @@ resource_local_to_scene = true
 0/tile_mode = 1
 0/autotile/bitmask_mode = 1
 0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 186, Vector2( 0, 1 ), 511, Vector2( 0, 2 ), 184, Vector2( 0, 3 ), 178, Vector2( 0, 4 ), 176, Vector2( 0, 5 ), 50, Vector2( 1, 0 ), 442, Vector2( 1, 1 ), 190, Vector2( 1, 2 ), 154, Vector2( 1, 3 ), 58, Vector2( 1, 4 ), 152, Vector2( 1, 5 ), 26, Vector2( 2, 0 ), 250, Vector2( 2, 1 ), 187, Vector2( 2, 2 ), 440, Vector2( 2, 3 ), 182, Vector2( 2, 4 ), 432, Vector2( 2, 5 ), 54, Vector2( 3, 0 ), 506, Vector2( 3, 1 ), 446, Vector2( 3, 2 ), 218, Vector2( 3, 3 ), 59, Vector2( 3, 4 ), 216, Vector2( 3, 5 ), 27, Vector2( 4, 0 ), 251, Vector2( 4, 1 ), 191, Vector2( 4, 2 ), 248, Vector2( 4, 3 ), 434, Vector2( 4, 4 ), 146, Vector2( 4, 5 ), 56, Vector2( 5, 0 ), 254, Vector2( 5, 1 ), 443, Vector2( 5, 2 ), 155, Vector2( 5, 3 ), 62, Vector2( 5, 4 ), 144, Vector2( 5, 5 ), 48, Vector2( 6, 0 ), 510, Vector2( 6, 1 ), 447, Vector2( 6, 2 ), 504, Vector2( 6, 3 ), 438, Vector2( 6, 4 ), 24, Vector2( 6, 5 ), 18, Vector2( 7, 0 ), 507, Vector2( 7, 1 ), 255, Vector2( 7, 2 ), 219, Vector2( 7, 3 ), 63 ]
-0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/icon_coordinate = Vector2( 4, 5 )
 0/autotile/tile_size = Vector2( 22, 12 )
 0/autotile/spacing = 0
 0/autotile/occluder_map = [  ]
@@ -315,6 +315,16 @@ format = 1
 tile_data = PoolIntArray( 2, 0, 262144, 3, 0, 327684, 4, 0, 327684, 5, 0, 327684, 6, 0, 131072, 7, 0, 327684, 8, 0, 262145, 65538, 0, 262148, 65542, 0, 262148, 65544, 0, 262148, 131074, 0, 327680, 131075, 0, 131072, 131076, 0, 327684, 131077, 0, 327684, 131078, 0, 196609, 131079, 0, 131072, 131080, 0, 196609, 131081, 0, 327684, 131082, 0, 327684, 131083, 0, 327684, 131084, 0, 327684, 131085, 0, 327684, 131086, 0, 262145, 196611, 0, 262148, 196615, 0, 262148, 196622, 0, 262148, 262147, 0, 327680, 262148, 0, 327684, 262149, 0, 131072, 262150, 0, 327684, 262151, 0, 196609, 262152, 0, 327684, 262153, 0, 262145, 262158, 0, 262148, 327685, 0, 262148, 327689, 0, 262148, 327694, 0, 262148, 393221, 0, 262148, 393225, 0, 196608, 393226, 0, 327684, 393227, 0, 327684, 393228, 0, 131072, 393229, 0, 327684, 393230, 0, 327681, 458757, 0, 327680, 458758, 0, 262145, 458761, 0, 262148, 458764, 0, 262148, 524294, 0, 262148, 524297, 0, 262148, 524300, 0, 262148, 589830, 0, 327680, 589831, 0, 327684, 589832, 0, 327684, 589833, 0, 196609, 589834, 0, 327684, 589835, 0, 327684, 589836, 0, 327681 )
 script = ExtResource( 9 )
 
+[node name="Roads2" type="TileMap" parent="Navigation2D"]
+scale = Vector2( 3, 3 )
+mode = 2
+tile_set = SubResource( 52 )
+cell_size = Vector2( 16, 12 )
+cell_custom_transform = Transform2D( 16, 0, -6, 12, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 2, 0, 262144, 3, 0, 327684, 4, 0, 327684, 5, 0, 327684, 6, 0, 131072, 7, 0, 327684, 8, 0, 262145, 65538, 0, 262148, 65542, 0, 262148, 65544, 0, 262148, 131074, 0, 327680, 131075, 0, 131072, 131076, 0, 327684, 131077, 0, 327684, 131078, 0, 196609, 131079, 0, 131072, 131080, 0, 196609, 131081, 0, 327684, 131082, 0, 327684, 131083, 0, 327684, 131084, 0, 327684, 131085, 0, 327684, 131086, 0, 262145, 196611, 0, 262148, 196615, 0, 262148, 196622, 0, 262148, 262147, 0, 327680, 262148, 0, 327684, 262149, 0, 131072, 262150, 0, 327684, 262151, 0, 196609, 262152, 0, 327684, 262153, 0, 262145, 262158, 0, 262148, 327685, 0, 262148, 327689, 0, 262148, 327694, 0, 262148, 393221, 0, 262148, 393225, 0, 196608, 393226, 0, 327684, 393227, 0, 327684, 393228, 0, 131072, 393229, 0, 327684, 393230, 0, 327681, 458757, 0, 327680, 458758, 0, 262145, 458761, 0, 262148, 458764, 0, 262148, 524294, 0, 262148, 524297, 0, 262148, 524300, 0, 262148, 589830, 0, 327680, 589831, 0, 327684, 589832, 0, 327684, 589833, 0, 196609, 589834, 0, 327684, 589835, 0, 327684, 589836, 0, 327681 )
+script = ExtResource( 9 )
+
 [node name="Buildings" type="Node2D" parent="Navigation2D"]
 script = ExtResource( 1 )
 
@@ -375,36 +385,47 @@ position = Vector2( 648, 144 )
 
 [node name="Grass" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
 position = Vector2( 138, 108 )
+door_location = Vector2( 0, 0 )
 
 [node name="Grass2" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
 position = Vector2( 186, 108 )
+door_location = Vector2( 0, 0 )
 
 [node name="Grass3" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
 position = Vector2( 234, 108 )
+door_location = Vector2( 0, 0 )
 
 [node name="Grass4" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
 position = Vector2( 198, 180 )
+door_location = Vector2( 0, 0 )
 
 [node name="Grass5" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
 position = Vector2( 246, 180 )
+door_location = Vector2( 0, 0 )
 
 [node name="Grass6" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
 position = Vector2( 180, 216 )
+door_location = Vector2( 0, 0 )
 
 [node name="Grass7" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
 position = Vector2( 228, 216 )
+door_location = Vector2( 0, 0 )
 
 [node name="Grass8" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
 position = Vector2( 276, 216 )
+door_location = Vector2( 0, 0 )
 
 [node name="Grass9" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
 position = Vector2( 258, 252 )
+door_location = Vector2( 0, 0 )
 
 [node name="Grass10" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
 position = Vector2( 192, 288 )
+door_location = Vector2( 0, 0 )
 
 [node name="Grass11" parent="Navigation2D/Buildings" instance=ExtResource( 5 )]
 position = Vector2( 240, 288 )
+door_location = Vector2( 0, 0 )
 
 [node name="Entities" type="Node2D" parent="."]
 pause_mode = 1

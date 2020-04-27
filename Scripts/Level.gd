@@ -18,6 +18,7 @@ export(int) var nb_building = 0
 export(int) var nb_gas_station = 0
 export(int) var nb_hospital = 0
 export(int) var objective_timer = 0
+var in_editor: bool = false
 
 var current_timer = objective_timer
 
@@ -39,6 +40,8 @@ func set_scene(scene, type, width, button):
 		tilePreview.centered = spr.centered
 		tilePreview.hframes = spr.hframes
 		tilePreview.vframes = spr.vframes
+		tilePreview.region_enabled = spr.region_enabled
+		tilePreview.region_rect = spr.region_rect
 
 func highlight():
 	var tilePreview = $"GUI/TilePreview"
@@ -58,6 +61,10 @@ onready var cursor_click = preload("res://Resources/Images/Sprite/cursor_click.p
 onready var cursor_fire = preload("res://Resources/Images/Sprite/cursor_fire.png")
 
 func start():
+	
+	$"GUI/Buttons".hide()
+	#$"GUI/Reset".show()
+	
 	setting_fire = true
 	selected_scene = null
 	highlight()
@@ -102,6 +109,7 @@ func _input(event):
 			var no_props = true
 			var all_in_nav = true
 			var none_in_nav = true
+			
 			for i in range(selected_width):
 				var p = pos + Vector2(i, 0)
 				if $Navigation2D/Buildings.get_building_at(p) != null:
@@ -123,16 +131,17 @@ func _input(event):
 				elif selected_type == 2: # SProp
 					var b = $Navigation2D/Buildings.get_building_at(pos)
 					placable = all_in_nav or (b != null and b.max_people_inside > 0) or $Navigation2D/Roads.is_road(pos)
+				elif selected_type == 3:
+					placable = no_building and not $Navigation2D/Roads.is_road(pos) and no_props 
 			else:
 				placable = false
-				
+			
 			$"GUI/TilePreview".self_modulate = Color(0.211, 1, 0.211, 0.784) if placable \
 				else Color(1, 0.211, 0.211, 0.784)
 
 	elif event is InputEventMouseButton and not event.is_echo():
 		
 		if setting_fire and event.pressed and event.button_index == 1 :
-			print("test")
 			var pos = Burnable.s_grid_pos($"GUI/TilePreview".position)
 			var build = $Navigation2D/Buildings.get_building_at(pos)
 			if build != null and build.can_be_on_fire:
@@ -148,14 +157,27 @@ func _input(event):
 			Input.set_custom_mouse_cursor(cursor_click if event.pressed else cursor)
 		
 		if event.pressed and not ignore_click and selected_scene != null and placable and event.button_index == 1 :
-			var placed = selected_scene.instance()
-			placed.position = $"GUI/TilePreview".position
-			var coll = $Navigation2D/Buildings if selected_type == 0 else $Props
-			coll.add_child(placed)
-			coll.declare(placed)
-			placed.set_owner(self)
-			placed.post_init()
-			placed.removable = true
+			if selected_type != 3:
+				var placed = selected_scene.instance()
+				placed.position = $"GUI/TilePreview".position
+				var coll = $Navigation2D/Buildings if selected_type == 0 else $Props
+				coll.add_child(placed)
+				coll.declare(placed)
+				placed.set_owner(self)
+				placed.post_init()
+				placed.removable = true
+			else:
+				var placed = selected_scene.instance()
+				var path = placed.get_node("Sprite").texture.get_path()
+				var pos = Burnable.s_grid_pos($"GUI/TilePreview".position)
+				
+				if "dirt" in path:
+					$Navigation2D/Roads.set_cellv(Burnable.s_grid_pos($"GUI/TilePreview".position), 3)
+				elif "road" in path:
+					$Navigation2D/Roads.set_cellv(Burnable.s_grid_pos($"GUI/TilePreview".position), 0)
+					
+				$Navigation2D/Roads.update_dirty_quadrants()
+				$Navigation2D/Roads.update_bitmask_area(pos)
 			
 			var n_count = clicked_button.get_count() - 1
 			clicked_button.set_count(n_count)
@@ -180,7 +202,7 @@ func _input(event):
 					button.set_count(button.get_count()+1)
 					
 					prop.queue_free()
-			else:
+			elif $"Navigation2D/Buildings".get_building_at(position) != null:
 				var building = $"Navigation2D/Buildings".get_building_at(position)
 				if building != null:
 					if building.removable:
@@ -204,6 +226,10 @@ func _input(event):
 						button.set_count(button.get_count()+1)
 					
 						building.queue_free()
+			elif in_editor and $Navigation2D/Roads.is_road(position):
+				$Navigation2D/Roads.set_cellv(position, -1)
+				$Navigation2D/Roads.update_dirty_quadrants()
+				$Navigation2D/Roads.update_bitmask_area(position)
 		updateObjective()
 
 func _ready():
@@ -248,6 +274,12 @@ func init_counts():
 	$GUI/Buttons/BuildingButton.set_count(nb_building)
 	$GUI/Buttons/GasStationButton.set_count(nb_gas_station)
 	$GUI/Buttons/HosiptalButton.set_count(nb_hospital)
+	$GUI/Buttons/RoadButton.set_count(-1)
+	$GUI/Buttons/DirtButton.set_count(-1)
+	if nb_cardboard < 0:
+		in_editor = true
+		$GUI/Buttons/RoadButton.visible = true
+		$GUI/Buttons/DirtButton.visible = true
 
 func _process(delta):
 	ignore_click = false

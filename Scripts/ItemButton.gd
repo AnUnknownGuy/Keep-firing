@@ -2,7 +2,7 @@ extends _Button
 
 export(String) var icon_path = ""
 export(String) var scene_path = ""
-export(int, "Building", "Prop", "SProp") var tile_type = 0
+export(int, "Building", "Prop", "SProp", "Tile") var tile_type = 0
 export(int) var tile_width = 1
 
 func set_count(c):

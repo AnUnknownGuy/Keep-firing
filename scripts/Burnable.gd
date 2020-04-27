@@ -36,6 +36,7 @@ func reset():
 	state = 0
 	can_be_on_fire = to_burn
 	time_remaining = time_alive_on_fire
+	modulate = Color(1, 1, 1, 1)
 	if has_node("Fire"):
 		$Fire.restart()
 		$Fire.emitting = false

@@ -11,6 +11,18 @@ icon_path = "res://Resources/Images/Sprite/ic_cardboard.png"
 scene_path = "res://Scenes/Cardboard.tscn"
 tile_type = 2
 
+[node name="RoadButton" parent="." instance=ExtResource( 3 )]
+position = Vector2( 60, 432 )
+icon_path = "res://Resources/Images/Sprite/ic_cardboard.png"
+scene_path = "res://Scenes/Road.tscn"
+tile_type = 3
+
+[node name="DirtButton" parent="." instance=ExtResource( 3 )]
+position = Vector2( 141, 432 )
+icon_path = "res://Resources/Images/Sprite/ic_cardboard.png"
+scene_path = "res://Scenes/Dirt.tscn"
+tile_type = 3
+
 [node name="JerrycanButton" parent="." instance=ExtResource( 3 )]
 position = Vector2( 141, 540 )
 icon_path = "res://Resources/Images/Sprite/ic_jerrycan.png"
