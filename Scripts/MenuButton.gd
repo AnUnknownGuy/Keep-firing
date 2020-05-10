@@ -4,7 +4,6 @@ export(String) var show_node_path = ""
 export(String) var show_scene_path = ""
 
 func handle_click():
-	print("change")
 	if len(show_node_path) > 0:
 		get_parent().hide()
 		get_node(show_node_path).show()

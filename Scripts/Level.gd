@@ -223,7 +223,8 @@ func _input(event):
 						elif "hospital" in path:
 							button = $GUI/Buttons/HosiptalButton
 					
-						button.set_count(button.get_count()+1)
+						if button != null :
+							button.set_count(button.get_count()+1)
 					
 						building.queue_free()
 			elif in_editor and $Navigation2D/Roads.is_road(position):
@@ -274,12 +275,23 @@ func init_counts():
 	$GUI/Buttons/BuildingButton.set_count(nb_building)
 	$GUI/Buttons/GasStationButton.set_count(nb_gas_station)
 	$GUI/Buttons/HosiptalButton.set_count(nb_hospital)
+	$GUI/Buttons/FireDepartmentButton.set_count(-1)
+	$GUI/Buttons/SprinklerButton.set_count(-1)
 	$GUI/Buttons/RoadButton.set_count(-1)
 	$GUI/Buttons/DirtButton.set_count(-1)
 	if nb_cardboard < 0:
 		in_editor = true
 		$GUI/Buttons/RoadButton.visible = true
 		$GUI/Buttons/DirtButton.visible = true
+		$GUI/Buttons/SprinklerButton.visible = true
+		$GUI/Buttons/FireDepartmentButton.visible = true
+	else:
+		in_editor = false
+		$GUI/Buttons/RoadButton.visible = false
+		$GUI/Buttons/DirtButton.visible = false
+		$GUI/Buttons/SprinklerButton.visible = false
+		$GUI/Buttons/FireDepartmentButton.visible = false
+		
 
 func _process(delta):
 	ignore_click = false

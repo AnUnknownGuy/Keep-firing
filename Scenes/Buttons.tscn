@@ -17,6 +17,16 @@ icon_path = "res://Resources/Images/Sprite/ic_cardboard.png"
 scene_path = "res://Scenes/Road.tscn"
 tile_type = 3
 
+[node name="FireDepartmentButton" parent="." instance=ExtResource( 3 )]
+position = Vector2( 768, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_cardboard.png"
+scene_path = "res://Scenes/FireDepartment.tscn"
+
+[node name="SprinklerButton" parent="." instance=ExtResource( 3 )]
+position = Vector2( 847, 540 )
+icon_path = "res://Resources/Images/Sprite/ic_cardboard.png"
+scene_path = "res://Scenes/Sprinkler.tscn"
+
 [node name="DirtButton" parent="." instance=ExtResource( 3 )]
 position = Vector2( 141, 432 )
 icon_path = "res://Resources/Images/Sprite/ic_cardboard.png"
@@ -45,18 +55,18 @@ icon_path = "res://Resources/Images/Sprite/ic_house.png"
 scene_path = "res://Scenes/House.tscn"
 
 [node name="BuildingButton" parent="." instance=ExtResource( 3 )]
-position = Vector2( 529, 540 )
+position = Vector2( 527, 540 )
 icon_path = "res://Resources/Images/Sprite/ic_building1.png"
 scene_path = "res://Scenes/Building1.tscn"
 
 [node name="GasStationButton" parent="." instance=ExtResource( 3 )]
-position = Vector2( 610, 540 )
+position = Vector2( 607, 540 )
 icon_path = "res://Resources/Images/Sprite/ic_gas_station.png"
 scene_path = "res://Scenes/GasStation.tscn"
 tile_width = 2
 
 [node name="HosiptalButton" parent="." instance=ExtResource( 3 )]
-position = Vector2( 691, 540 )
+position = Vector2( 687, 540 )
 icon_path = "res://Resources/Images/Sprite/ic_hospital.png"
 scene_path = "res://Scenes/Hospital.tscn"
 tile_width = 3
