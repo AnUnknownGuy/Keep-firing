@@ -6,6 +6,7 @@
 
 [node name="Building1" type="Node2D"]
 script = ExtResource( 1 )
+max_heat_transmitted = 8.0
 max_heat_resist = 100.0
 time_alive_on_fire = 12
 door_location = Vector2( 21, 36 )

@@ -17,6 +17,7 @@ var to_burn
 export var current_heat: float = 0
 var added_heat: float = 0
 var cooling: float = 0
+var reparing: float = 0
 export var on_fire = false
 var burned: bool = false
 
@@ -29,7 +30,8 @@ export var width = 1
 
 func reset():
 	added_heat = 0
-	current_heat = 0
+	if (current_heat > 0) :
+		current_heat = 0
 	cooling = 0
 	on_fire = false
 	burned = false
@@ -84,11 +86,14 @@ func set_z():
 	z_index = fx + 9.8 * fy + 0.2 * (pos.y)
 
 func add_heat(heat: float):
-	
 	if heat > 0:
 		added_heat += heat
 	else:
-		cooling += heat
+		reparing += heat
+		
+
+func cool(cool: int):
+	cooling += cool
 
 func set_new_heat():
 	if not burned:
@@ -98,7 +103,7 @@ func set_new_heat():
 				time_remaining = time_alive_on_fire
 				inc_state()
 			if (on_fire):
-				current_heat += cooling
+				current_heat += reparing
 				if (current_heat < 0):
 					current_heat = 0
 					stop_fire()
@@ -106,9 +111,11 @@ func set_new_heat():
 				current_heat = max_heat_resist
 		else:
 			if (can_be_on_fire):
-				current_heat += added_heat
+				current_heat += added_heat + cooling
 				if current_heat >= max_heat_resist:
 					current_heat = max_heat_resist
+				if current_heat < 0:
+					current_heat = 0
 				var c: float = current_heat / max_heat_resist
 				modulate = Color(1, 1 - 0.3 * c, 1 - 0.3 * c, 1)
 				
@@ -118,10 +125,11 @@ func set_new_heat():
 					set_on_fire()
 		
 		added_heat = 0
+		cooling = 0
 		if not on_fire:
-			cooling = 10
+			reparing = 10
 		else:
-			cooling = 0
+			reparing = 0
 
 func set_on_fire():
 	if can_be_on_fire:
@@ -155,7 +163,6 @@ func terminated():
 		current_heat = 0
 
 func transfer_heat():
-	
 	var heat_to_transfer = current_heat
 	
 	if heat_to_transfer < 0 or on_fire:

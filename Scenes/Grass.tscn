@@ -11,11 +11,10 @@ outlines = [ PoolVector2Array( 48, 0, 30, 36, -18, 36, 0, 0 ) ]
 
 [node name="Grass" type="Node2D"]
 script = ExtResource( 1 )
-max_heat_transmitted = 10.0
-max_heat_resist = 50.0
+max_heat_transmitted = 5.0
+max_heat_resist = 40.0
 time_alive_on_fire = 10
 on_fire = 0.0
-door_location = null
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
 navpoly = SubResource( 1 )

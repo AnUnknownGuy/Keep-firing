@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Resources/Images/TileMaps/tm_sprinkler.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Building.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Sprinkler.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "sprinkle"
@@ -21,8 +21,9 @@ tracks/0/keys = {
 
 [node name="Sprinkler" type="Node2D"]
 script = ExtResource( 2 )
+max_heat_transmitted = -4.0
 can_be_on_fire = false
-current_heat = -100.0
+current_heat = -4.0
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )
